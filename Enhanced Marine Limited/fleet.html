@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enhanced Marine · Leadership Team</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            logoNavy: { DEFAULT: '#003366', dark: '#001a33' },
+            logoBlue: { DEFAULT: '#0077d6', light: '#3399ff' }
+          },
+          fontFamily: { montserrat: ['Montserrat', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #0077d6; transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link { z-index: 210; }
+    header.scrolled { top: 0 !important; background-color: rgba(255, 255, 255, 0.95) !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border-bottom-color: rgba(0, 51, 102, 0.08) !important; }
+    .dark header.scrolled { background-color: rgba(0, 26, 51, 0.95) !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); border-bottom-color: rgba(255, 255, 255, 0.05) !important; }
+    header.scrolled .nav-link { color: #003366 !important; }
+    .dark header.scrolled .nav-link { color: #ffffff !important; }
+    /* FIX: use the same overflow-visible + position:static approach as the working reference */
+    header,
+    #desktopNav {
+      overflow: visible;
+    }
+    #desktopNav .group {
+      position: static;
+    }
+    /* FIX: mega-dropdown uses absolute positioning anchored via the group, not fixed */
+    .mega-dropdown { position: absolute !important; top: 100% !important; left: 50% !important; width: min(1100px, calc(100vw - 2rem)) !important; max-height: calc(100vh - 110px); opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-50%) translateY(8px) !important; }
+    /* FIX: open state driven by JS-added .dropdown-open class (not just :hover) */
+    #desktopNav .group:hover .mega-dropdown,
+    #desktopNav .group:focus-within .mega-dropdown,
+    #desktopNav .group.dropdown-open .mega-dropdown,
+    .mega-dropdown:hover { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) !important; pointer-events: auto; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .pill-stat { background: rgba(0,119,214,0.08); backdrop-filter: blur(4px); border: 1px solid rgba(0,119,214,0.2); }
+    .dark .pill-stat { background: rgba(0,119,214,0.15); border-color: rgba(0,119,214,0.3); }
+    .leader-card { transition: all 0.3s ease; border-radius: 1.25rem; border: 1px solid rgba(148, 163, 184, 0.12); background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); }
+    .dark .leader-card { background: rgba(0,34,68,0.7); border-color: rgba(255,255,255,0.06); }
+    .leader-card:hover { transform: translateY(-8px); box-shadow: 0 25px 35px -12px rgba(0,51,102,0.2); border-color: #0077d6; }
+    .dark .leader-card:hover { box-shadow: 0 25px 35px -12px rgba(0,0,0,0.6); }
+    .leader-img-wrapper { position: relative; overflow: hidden; border-radius: 1rem 1rem 0 0; }
+    .leader-img-wrapper img { transition: transform 0.5s ease; }
+    .leader-card:hover .leader-img-wrapper img { transform: scale(1.04); }
+    .social-link { transition: all 0.2s ease; opacity: 0.6; }
+    .social-link:hover { opacity: 1; transform: translateY(-2px); }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .animate-up { opacity: 0; transform: translateY(40px); animation: fadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+  </style>
+</head>
+<body class="font-montserrat bg-white dark:bg-logoNavy-dark text-slate-800 dark:text-white overflow-x-hidden transition-colors duration-300">
+
+  <!-- ========== TOP BAR ========== -->
+  <div class="hidden lg:flex bg-[#f4f7fa] dark:bg-[#001224] px-12 py-2.5 justify-end items-center text-xs font-semibold uppercase tracking-wide relative z-[100] border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
+    <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors duration-300">Case studies</a>
+    <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors duration-300">News & Events <span class="text-[9px]">▼</span></a>
+    <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors duration-300">Investors</a>
+    <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors duration-300">Information centre</a>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header id="navbar" class="fixed top-0 lg:top-[38px] w-full px-4 sm:px-6 lg:px-12 py-4 flex justify-between items-center z-[99] bg-white/80 dark:bg-logoNavy-dark/40 backdrop-blur-md border-b border-slate-200 dark:border-white/10 transition-all duration-500">
+    <div class="bg-white dark:bg-white px-3 sm:px-4 py-1.5 rounded-lg shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer z-50">
+      <img src="img/WhatsApp Image 2026-06-14 at 4.24.52 PM.jpeg" alt="Enhanced Marine Limited Logo" class="logo-img h-[38px] sm:h-[45px] transition-all duration-300">
+    </div>
+    <nav class="hidden lg:flex gap-7 xl:gap-9 font-semibold text-sm items-center z-50" id="desktopNav">
+      <div class="relative group py-2"><a href="index.html" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Home</a></div>
+      <div class="relative group py-2">
+        <a href="#" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Who we are <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" alt="Marine Technology Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Supporting Global Energy</p><h4 class="text-xl font-extrabold leading-tight">Delivering subsea solutions safely since 1985.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Who we are</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="about.html" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Who we are</a>
+              <a href="history.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Our history</a>
+              <a href="operations.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Where we operate</a>
+              <a href="leadership.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Leadership team</a>
+              <a href="values.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Values</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative group py-2">
+        <a href="#" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">What we do <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&q=80&w=600" alt="Subsea Services Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Specialist Solutions</p><h4 class="text-xl font-extrabold leading-tight">Integrated subsea services for complex offshore projects.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">What we do</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="survey.html" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Survey & robotics</a>
+              <a href="mechanical.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Mechanical solutions</a>
+              <a href="asset.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Asset integrity</a>
+              <a href="turnkey.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Turnkey services</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative group py-2">
+        <a href="fleet.html" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Fleet & Equipment <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" alt="Fleet Equipment Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Global Capability</p><h4 class="text-xl font-extrabold leading-tight">One of the industry's largest rental fleets.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Fleet & Equipment</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="rental.html" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Rental fleet</a>
+              <a href="specialist.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Specialist tooling</a>
+              <a href="inspection.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Inspection systems</a>
+              <a href="innovation.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Innovation centre</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative group py-2">
+        <a href="#" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Markets <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=600" alt="Markets Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Serving Key Sectors</p><h4 class="text-xl font-extrabold leading-tight">Supporting renewables and mature energy markets worldwide.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Markets</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="#" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Offshore renewables</a>
+              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Oil & gas</a>
+              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Energy transition</a>
+              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Global footprint</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative group py-2">
+        <a href="#" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Careers <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600" alt="Careers Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Join Our Team</p><h4 class="text-xl font-extrabold leading-tight">Build your future with a global marine specialist.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Careers</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="#" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Why join us</a>
+              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Life at EML</a>
+              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Current vacancies</a>
+              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Graduates</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="hidden lg:flex items-center gap-4 xl:gap-6 z-50">
+      <button id="themeToggle" class="text-logoNavy dark:text-white p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none" aria-label="Toggle dark mode">
+        <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 1111.25 3v0z"></path></svg>
+        <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+      </button>
+      <button class="btn-contact bg-logoBlue hover:bg-logoBlue/90 text-white px-6 py-2.5 rounded-md font-bold text-[13px] uppercase tracking-wide transition-all duration-300 hover:shadow-lg hover:shadow-logoBlue/20">Contact Us</button>
+    </div>
+    <div class="flex lg:hidden items-center gap-4 z-[101]">
+      <button id="themeToggleMobile" class="text-logoNavy dark:text-white p-2 rounded-full focus:outline-none" aria-label="Toggle dark mode">
+        <svg id="sunIconMobile" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 1111.25 3v0z"></path></svg>
+        <svg id="moonIconMobile" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+      </button>
+      <div class="flex flex-col gap-1.5 cursor-pointer" id="mobileBtn">
+        <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+        <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+        <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+      </div>
+    </div>
+    <nav id="mobileNav" class="fixed inset-0 h-screen overflow-y-auto bg-white/95 dark:bg-logoNavy-dark/95 px-6 py-24 transform -translate-y-full transition-transform duration-500 ease-in-out z-[100] backdrop-blur-md">
+      <div class="mx-auto flex w-full max-w-sm flex-col gap-2">
+        <a href="index.html" class="border-b border-slate-200 dark:border-white/10 py-3 text-left text-lg font-bold text-logoNavy dark:text-white hover:text-logoBlue transition-colors">Home</a>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileWho"><span>Who we are</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileWho" class="hidden space-y-2 pb-3 pl-4">
+            <a href="#" class="block py-1 text-sm font-medium text-logoBlue">Who we are</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Our history</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Where we operate</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Leadership team</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Values</a>
+          </div>
+        </div>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileWhat"><span>What we do</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileWhat" class="hidden space-y-2 pb-3 pl-4">
+            <a href="#" class="block py-1 text-sm font-medium text-logoBlue">Survey & robotics</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Mechanical solutions</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Asset integrity</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Turnkey services</a>
+          </div>
+        </div>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileFleet"><span>Fleet & Equipment</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileFleet" class="hidden space-y-2 pb-3 pl-4">
+            <a href="#" class="block py-1 text-sm font-medium text-logoBlue">Rental fleet</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Specialist tooling</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Inspection systems</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Innovation centre</a>
+          </div>
+        </div>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileMarkets"><span>Markets</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileMarkets" class="hidden space-y-2 pb-3 pl-4">
+            <a href="#" class="block py-1 text-sm font-medium text-logoBlue">Offshore renewables</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Oil & gas</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Energy transition</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Global footprint</a>
+          </div>
+        </div>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileCareers"><span>Careers</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileCareers" class="hidden space-y-2 pb-3 pl-4">
+            <a href="#" class="block py-1 text-sm font-medium text-logoBlue">Why join us</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Life at EML</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Current vacancies</a>
+            <a href="#" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Graduates</a>
+          </div>
+        </div>
+        <button class="mt-6 bg-logoBlue text-white px-8 py-3 rounded-md font-bold text-sm uppercase tracking-wide w-full">Contact Us</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== LEADERSHIP HERO ========== -->
+  <section class="relative h-[80vh] sm:h-[90vh] w-full flex justify-center items-center overflow-hidden bg-logoNavy-dark border-b border-white/10">
+    <video class="absolute inset-0 w-full h-full object-cover z-0 opacity-30 dark:opacity-20" autoplay muted loop playsinline>
+      <source src="video/Untitled design (1).mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,51,102,0.4)_0%,rgba(0,18,36,0.9)_100%)] z-10"></div>
+    <div class="relative z-20 text-center max-w-5xl px-4 sm:px-6 text-white flex flex-col items-center">
+      <span class="text-logoBlue-light font-extrabold text-sm sm:text-base tracking-widest uppercase mb-4 animate-up" style="animation-delay: 0.1s;">Our people</span>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-extrabold leading-tight mb-6 animate-up" style="animation-delay: 0.2s;">
+        Leadership <span class="text-logoBlue">Team</span>
+      </h1>
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 max-w-3xl mx-auto animate-up leading-relaxed" style="animation-delay: 0.4s;">
+        Experienced leaders with deep subsea and offshore energy expertise, driving our vision and values.
+      </p>
+      <div class="flex flex-wrap justify-center gap-5 mt-10 animate-up" style="animation-delay: 0.6s;">
+        <div class="pill-stat px-6 py-3 rounded-full text-white text-sm font-semibold border border-white/20 backdrop-blur-sm flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-4 h-4 text-logoBlue-light shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197" /></svg>
+          <span>Global leaders</span>
+        </div>
+        <div class="pill-stat px-6 py-3 rounded-full text-white text-sm font-semibold border border-white/20 backdrop-blur-sm flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-4 h-4 text-logoBlue-light shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75v16.5m0 0 5.25-5.25M12 20.25 6.75 15" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 6.75h12" /></svg>
+          <span>100+ years combined experience</span>
+        </div>
+        <div class="pill-stat px-6 py-3 rounded-full text-white text-sm font-semibold border border-white/20 backdrop-blur-sm flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-4 h-4 text-logoBlue-light shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-3.75-3.75-7.5-6.75-7.5-11.25A3.75 3.75 0 0 1 8.25 6c1.2 0 2.4.6 3.75 1.8C13.35 6.6 14.55 6 15.75 6A3.75 3.75 0 0 1 19.5 9.75C19.5 14.25 15.75 17.25 12 21Z" /></svg>
+          <span>15+ nationalities</span>
+        </div>
+      </div>
+    </div>
+    <div class="absolute -bottom-1.5 left-0 w-full overflow-hidden leading-none z-30">
+      <svg class="block w-[calc(100%+1.3px)] h-[40px] sm:h-[60px] lg:h-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C79.44,115.65,159.27,117.86,238.16,104.59,266.35,99.8,294.62,91.31,321.39,56.44Z" class="fill-white dark:fill-logoNavy-dark transition-colors duration-300"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== LEADERSHIP GRID ========== -->
+  <section class="bg-white dark:bg-logoNavy-dark pt-20 pb-24 px-4 sm:px-6 border-b border-slate-200 dark:border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="text-logoBlue font-extrabold text-sm tracking-widest uppercase">Executive team</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white mt-2">Meet our leadership</h2>
+        <p class="text-slate-500 dark:text-slate-300 max-w-2xl mx-auto mt-4">A diverse team of industry veterans driving innovation, safety, and growth across the global energy sector.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- CEO -->
+        <div class="leader-card overflow-hidden reveal">
+          <div class="leader-img-wrapper h-64 bg-slate-200 dark:bg-slate-700">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" alt="David M. Carter" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-extrabold text-logoNavy dark:text-white">David M. Carter</h3>
+            <p class="text-logoBlue font-bold text-sm">Chief Executive Officer</p>
+            <p class="text-sm text-slate-500 dark:text-slate-300 mt-2 leading-relaxed">30+ years in subsea engineering and global operations. Former VP at Subsea 7. Drives the company's strategic vision and growth.</p>
+            <div class="flex gap-3 mt-4">
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0h-20.46c-1.38 0-2.5 1.12-2.5 2.5v19.04c0 1.38 1.12 2.5 2.5 2.5h20.46c1.38 0 2.5-1.12 2.5-2.5v-19.04c0-1.38-1.12-2.5-2.5-2.5zm-1.78 20.39h-4.24v-5.57c0-1.33-.48-2.23-1.67-2.23-.91 0-1.45.61-1.69 1.2-.09.22-.11.53-.11.84v5.76h-4.24s.06-9.35 0-10.32h4.24v1.46c.56-.86 1.56-1.39 2.83-1.39 2.06 0 3.61 1.35 3.61 4.25v6.01h-4.24v-5.57c0-.26-.01-.52-.16-.71-.35-.88-.99-1.16-1.82-1.16-.94 0-1.77.59-1.77 1.93v5.51h-4.24v-10.32h4.24v1.46c.56-.86 1.56-1.39 2.83-1.39 2.06 0 3.61 1.35 3.61 4.25v6.01z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <!-- COO -->
+        <div class="leader-card overflow-hidden reveal">
+          <div class="leader-img-wrapper h-64 bg-slate-200 dark:bg-slate-700">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Elena K. Rossi" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-extrabold text-logoNavy dark:text-white">Elena K. Rossi</h3>
+            <p class="text-logoBlue font-bold text-sm">Chief Operating Officer</p>
+            <p class="text-sm text-slate-500 dark:text-slate-300 mt-2 leading-relaxed">Expert in project delivery and asset management, previously at TechnipFMC. Leads global operations and service delivery excellence.</p>
+            <div class="flex gap-3 mt-4">
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <!-- CTO -->
+        <div class="leader-card overflow-hidden reveal">
+          <div class="leader-img-wrapper h-64 bg-slate-200 dark:bg-slate-700">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600" alt="James O. Nakamura" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-extrabold text-logoNavy dark:text-white">James O. Nakamura</h3>
+            <p class="text-logoBlue font-bold text-sm">Chief Technology Officer</p>
+            <p class="text-sm text-slate-500 dark:text-slate-300 mt-2 leading-relaxed">Pioneer in ROV and autonomous systems, holds 12 patents in subsea robotics. Leads innovation and technology strategy.</p>
+            <div class="flex gap-3 mt-4">
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <!-- CFO -->
+        <div class="leader-card overflow-hidden reveal">
+          <div class="leader-img-wrapper h-64 bg-slate-200 dark:bg-slate-700">
+            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=600" alt="Sarah J. Williams" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-extrabold text-logoNavy dark:text-white">Sarah J. Williams</h3>
+            <p class="text-logoBlue font-bold text-sm">Chief Financial Officer</p>
+            <p class="text-sm text-slate-500 dark:text-slate-300 mt-2 leading-relaxed">20+ years in energy finance, previously at BP and Shell. Drives financial strategy, M&A, and sustainable growth.</p>
+            <div class="flex gap-3 mt-4">
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <!-- CCO -->
+        <div class="leader-card overflow-hidden reveal">
+          <div class="leader-img-wrapper h-64 bg-slate-200 dark:bg-slate-700">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600" alt="Michael O. Adeyemi" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-extrabold text-logoNavy dark:text-white">Michael O. Adeyemi</h3>
+            <p class="text-logoBlue font-bold text-sm">Chief Commercial Officer</p>
+            <p class="text-sm text-slate-500 dark:text-slate-300 mt-2 leading-relaxed">Global commercial leader with expertise in subsea services and renewables. Drives market expansion and client relationships.</p>
+            <div class="flex gap-3 mt-4">
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <!-- VP People -->
+        <div class="leader-card overflow-hidden reveal">
+          <div class="leader-img-wrapper h-64 bg-slate-200 dark:bg-slate-700">
+            <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=80&w=600" alt="Priya S. Patel" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-extrabold text-logoNavy dark:text-white">Priya S. Patel</h3>
+            <p class="text-logoBlue font-bold text-sm">VP, People & Culture</p>
+            <p class="text-sm text-slate-500 dark:text-slate-300 mt-2 leading-relaxed">HR leader with 20 years in energy and technology. Champions diversity, inclusion, and talent development.</p>
+            <div class="flex gap-3 mt-4">
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+              <a href="#" class="social-link text-slate-400 dark:text-slate-500 hover:text-logoBlue"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BOARD OF DIRECTORS ========== -->
+  <section class="bg-slate-50 dark:bg-logoNavy-dark/30 py-20 px-4 sm:px-6 border-b border-slate-200 dark:border-white/10">
+    <div class="max-w-7xl mx-auto text-center mb-14 reveal">
+      <span class="text-logoBlue font-extrabold text-sm tracking-widest uppercase">Governance</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white mt-2">Board of Directors</h2>
+      <p class="text-slate-500 dark:text-slate-300 max-w-2xl mx-auto mt-4">Experienced non-executive directors providing strategic oversight and governance.</p>
+    </div>
+    <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white dark:bg-logoNavy p-6 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 reveal text-center">
+        <div class="w-20 h-20 rounded-full bg-slate-300 dark:bg-slate-600 mx-auto mb-4 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200" alt="Robert H. Anderson" class="w-full h-full object-cover">
+        </div>
+        <h4 class="font-extrabold text-logoNavy dark:text-white">Robert H. Anderson</h4>
+        <p class="text-sm text-logoBlue font-semibold">Chairman</p>
+        <p class="text-xs text-slate-500 dark:text-slate-300 mt-1">Former CEO, Subsea 7</p>
+      </div>
+      <div class="bg-white dark:bg-logoNavy p-6 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 reveal text-center">
+        <div class="w-20 h-20 rounded-full bg-slate-300 dark:bg-slate-600 mx-auto mb-4 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=200" alt="Claire M. Dubois" class="w-full h-full object-cover">
+        </div>
+        <h4 class="font-extrabold text-logoNavy dark:text-white">Claire M. Dubois</h4>
+        <p class="text-sm text-logoBlue font-semibold">Non-Executive Director</p>
+        <p class="text-xs text-slate-500 dark:text-slate-300 mt-1">Former CFO, TechnipFMC</p>
+      </div>
+      <div class="bg-white dark:bg-logoNavy p-6 rounded-xl shadow-sm border border-slate-200 dark:border-white/5 reveal text-center">
+        <div class="w-20 h-20 rounded-full bg-slate-300 dark:bg-slate-600 mx-auto mb-4 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Kenji T. Tanaka" class="w-full h-full object-cover">
+        </div>
+        <h4 class="font-extrabold text-logoNavy dark:text-white">Kenji T. Tanaka</h4>
+        <p class="text-sm text-logoBlue font-semibold">Non-Executive Director</p>
+        <p class="text-xs text-slate-500 dark:text-slate-300 mt-1">Energy Transition Advisor</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="relative py-24 sm:py-32 overflow-hidden bg-logoNavy-dark border-b border-white/10">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover object-top opacity-70" alt="Maritime experts">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-logoNavy-dark/40 via-logoNavy-dark/20 to-transparent z-10"></div>
+    <div class="absolute top-0 right-0 w-full lg:w-3/4 h-full backdrop-blur-2xl bg-white/5 border-l border-white/10 z-[15] hidden md:block" style="clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-start justify-center h-full text-white">
+      <span class="text-logoBlue-light font-extrabold text-base sm:text-lg mb-3 tracking-wide reveal">Join our team</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight max-w-3xl mb-8 reveal">Work alongside industry leaders and shape the future of subsea energy.</h2>
+      <a href="#" class="inline-flex items-center bg-logoBlue text-white px-8 py-4 rounded-md font-bold text-base shadow-2xl hover:bg-logoBlue/90 hover:scale-105 transition-all duration-300 reveal">View careers</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-[#001730] pt-20 pb-12 px-6 lg:px-12 border-t border-white/5 relative z-20">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+      <div class="lg:col-span-3">
+        <div class="bg-white inline-block px-4 py-2 rounded-lg mb-6 shadow-md">
+          <img src="img/WhatsApp Image 2026-06-14 at 4.24.52 PM.jpeg" alt="Enhanced Marine Limited Logo" class="w-auto h-[42px]">
+        </div>
+      </div>
+      <div class="lg:col-span-2">
+        <h4 class="text-logoBlue font-bold text-[15px] mb-4">Who we are</h4>
+        <ul class="flex flex-col gap-2.5 mb-8">
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">History</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Locations</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Leadership team</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Values</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors underline underline-offset-4 decoration-slate-500">Quality, health, safety and environment</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Sustainability</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Experts</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <h4 class="text-logoBlue font-bold text-[15px] mb-4">What we do</h4>
+        <ul class="flex flex-col gap-2.5">
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Asset integrity</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Mechanical solutions</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Survey & robotics</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <h4 class="text-logoBlue font-bold text-[15px] mb-4">Markets</h4>
+        <ul class="flex flex-col gap-2.5">
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Renewables</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Oil & gas</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Infrastructure & industrial</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-1">
+        <h4 class="text-logoBlue font-bold text-[15px] mb-4">Equipment</h4>
+        <ul class="flex flex-col gap-2.5">
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Explore all</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2 flex justify-start lg:justify-end">
+        <a href="#" class="inline-block border-2 border-white text-white rounded-md px-6 py-2.5 font-bold text-[14px] hover:bg-white hover:text-logoNavy transition-colors h-fit shadow-lg">Client portal</a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTopBtn" class="fixed bottom-6 right-6 bg-logoBlue text-white p-3 rounded-md shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-logoBlue/90 hover:-translate-y-1 z-50">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+  </button>
+
+  <!-- ========== SCRIPT ========== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navbar = document.getElementById('navbar');
+      const backToTopBtn = document.getElementById('backToTopBtn');
+      const htmlElement = document.documentElement;
+
+      // ── Desktop dropdown controller (matches the working reference) ──
+      const desktopDropdownGroups = document.querySelectorAll('#desktopNav .group');
+      let dropdownCloseTimer;
+
+      const closeDesktopDropdowns = () => {
+        desktopDropdownGroups.forEach((group) => group.classList.remove('dropdown-open'));
+      };
+
+      desktopDropdownGroups.forEach((group) => {
+        const dropdown = group.querySelector('.mega-dropdown');
+        if (!dropdown) return;
+
+        const openDropdown = () => {
+          clearTimeout(dropdownCloseTimer);
+          closeDesktopDropdowns();
+          group.classList.add('dropdown-open');
+        };
+
+        const scheduleClose = () => {
+          clearTimeout(dropdownCloseTimer);
+          dropdownCloseTimer = setTimeout(() => {
+            group.classList.remove('dropdown-open');
+          }, 220);
+        };
+
+        group.addEventListener('mouseenter', openDropdown);
+        group.addEventListener('mouseleave', scheduleClose);
+        dropdown.addEventListener('mouseenter', openDropdown);
+        dropdown.addEventListener('mouseleave', scheduleClose);
+        dropdown.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', closeDesktopDropdowns);
+        });
+      });
+
+      // ── Scroll: navbar + back-to-top ──
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+        if (window.scrollY > 400) {
+          backToTopBtn.classList.remove('opacity-0', 'invisible');
+          backToTopBtn.classList.add('opacity-100', 'visible');
+        } else {
+          backToTopBtn.classList.add('opacity-0', 'invisible');
+          backToTopBtn.classList.remove('opacity-100', 'visible');
+        }
+      });
+      backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // ── Mobile nav ──
+      const mobileBtn = document.getElementById('mobileBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const bars = mobileBtn.querySelectorAll('.mobile-bar');
+      const sectionToggles = document.querySelectorAll('.mobile-section-toggle');
+      const closeMobileSections = () => sectionToggles.forEach(btn => {
+        const target = document.getElementById(btn.getAttribute('data-target'));
+        const icon = btn.querySelector('.mobile-section-icon');
+        target?.classList.add('hidden');
+        icon?.classList.remove('rotate-180');
+      });
+      mobileBtn.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.contains('translate-y-0');
+        if (!isOpen) {
+          mobileNav.classList.remove('-translate-y-full');
+          mobileNav.classList.add('translate-y-0');
+          bars[0].classList.add('translate-y-2', 'rotate-45');
+          bars[1].classList.add('opacity-0');
+          bars[2].classList.add('-translate-y-2.5', '-rotate-45');
+        } else {
+          mobileNav.classList.add('-translate-y-full');
+          mobileNav.classList.remove('translate-y-0');
+          bars[0].classList.remove('translate-y-2', 'rotate-45');
+          bars[1].classList.remove('opacity-0');
+          bars[2].classList.remove('-translate-y-2.5', '-rotate-45');
+          closeMobileSections();
+        }
+      });
+      sectionToggles.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetId = button.getAttribute('data-target');
+          const target = document.getElementById(targetId);
+          const icon = button.querySelector('.mobile-section-icon');
+          const isOpen = !target.classList.contains('hidden');
+          closeMobileSections();
+          if (isOpen) return;
+          target.classList.remove('hidden');
+          icon.classList.add('rotate-180');
+        });
+      });
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.add('-translate-y-full');
+          mobileNav.classList.remove('translate-y-0');
+          bars[0].classList.remove('translate-y-2', 'rotate-45');
+          bars[1].classList.remove('opacity-0');
+          bars[2].classList.remove('-translate-y-2.5', '-rotate-45');
+          closeMobileSections();
+        });
+      });
+
+      // ── Dark mode ──
+      const themeToggle = document.getElementById('themeToggle');
+      const themeToggleMobile = document.getElementById('themeToggleMobile');
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      const sunIconMobile = document.getElementById('sunIconMobile');
+      const moonIconMobile = document.getElementById('moonIconMobile');
+
+      function updateThemeUi(isDark) {
+        if (isDark) {
+          htmlElement.classList.add('dark');
+          htmlElement.classList.remove('light');
+          sunIcon.classList.remove('hidden'); moonIcon.classList.add('hidden');
+          sunIconMobile.classList.remove('hidden'); moonIconMobile.classList.add('hidden');
+        } else {
+          htmlElement.classList.remove('dark');
+          htmlElement.classList.add('light');
+          sunIcon.classList.add('hidden'); moonIcon.classList.remove('hidden');
+          sunIconMobile.classList.add('hidden'); moonIconMobile.classList.remove('hidden');
+        }
+      }
+      let isDarkMode = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      updateThemeUi(isDarkMode);
+      const handleThemeSwitch = () => {
+        isDarkMode = !htmlElement.classList.contains('dark');
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        updateThemeUi(isDarkMode);
+      };
+      themeToggle.addEventListener('click', handleThemeSwitch);
+      themeToggleMobile.addEventListener('click', handleThemeSwitch);
+
+      // ── Scroll reveal ──
+      const revealObserver = new IntersectionObserver((entries) => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('active'); revealObserver.unobserve(entry.target); }
+      }), { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    });
+  </script>
+</body>
+</html>

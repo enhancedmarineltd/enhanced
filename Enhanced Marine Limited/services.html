@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Marine · What we do</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            logoNavy: { DEFAULT: '#003366', dark: '#001a33' },
+            logoBlue: { DEFAULT: '#0077d6', light: '#3399ff' }
+          },
+          fontFamily: { montserrat: ['Montserrat', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #0077d6; transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link { z-index: 210; }
+    header.scrolled { top: 0 !important; background-color: rgba(255,255,255,0.95) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-bottom-color: rgba(0,51,102,0.08) !important; }
+    .dark header.scrolled { background-color: rgba(0,26,51,0.95) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.4); border-bottom-color: rgba(255,255,255,0.05) !important; }
+    header.scrolled .nav-link { color: #003366 !important; }
+    .dark header.scrolled .nav-link { color: #ffffff !important; }
+    header, #desktopNav { overflow: visible; }
+    #desktopNav .group { position: static; }
+    .mega-dropdown { position: absolute !important; top: 100% !important; left: 50% !important; width: min(1100px, calc(100vw - 2rem)) !important; max-height: calc(100vh - 110px); opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-50%) translateY(8px) !important; }
+    #desktopNav .group:hover .mega-dropdown,
+    #desktopNav .group:focus-within .mega-dropdown,
+    #desktopNav .group.dropdown-open .mega-dropdown,
+    .mega-dropdown:hover { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) !important; pointer-events: auto; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .service-card { transition: all 0.3s ease; border-radius: 1rem; border: 1px solid rgba(148,163,184,0.2); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(0,51,102,0.2); border-color: rgba(0,119,214,0.6); }
+    .dark .service-card:hover { box-shadow: 0 20px 30px -12px rgba(0,0,0,0.6); border-color: rgba(0,119,214,0.4); }
+    .pill-stat { background: rgba(0,119,214,0.08); backdrop-filter: blur(4px); border: 1px solid rgba(0,119,214,0.2); }
+    .dark .pill-stat { background: rgba(0,119,214,0.15); border-color: rgba(0,119,214,0.3); }
+    .animate-up { opacity: 0; transform: translateY(40px); animation: fadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="font-montserrat bg-white dark:bg-logoNavy-dark text-slate-800 dark:text-white overflow-x-hidden transition-colors duration-300">
+
+  <!-- top bar -->
+  <div class="hidden lg:flex bg-[#f4f7fa] dark:bg-[#001224] px-12 py-2.5 justify-end items-center text-xs font-semibold uppercase tracking-wide relative z-[100] border-b border-slate-200 dark:border-white/5">
+    <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors">Case studies</a>
+    <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors">News & Events <span class="text-[9px]">▼</span></a>
+    <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors">Investors</a>
+    <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors">Information centre</a>
+  </div>
+
+  <!-- header -->
+  <header id="navbar" class="fixed top-0 lg:top-[38px] w-full px-4 sm:px-6 lg:px-12 py-4 flex justify-between items-center z-[99] bg-white/80 dark:bg-logoNavy-dark/40 backdrop-blur-md border-b border-slate-200 dark:border-white/10 transition-all duration-500">
+    <div class="bg-white dark:bg-white px-3 sm:px-4 py-1.5 rounded-lg shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer z-50">
+      <img src="img/WhatsApp Image 2026-06-14 at 4.24.52 PM.jpeg" alt="Enhanced Marine Limited Logo" class="logo-img h-[38px] sm:h-[45px]">
+    </div>
+    <nav class="hidden lg:flex gap-7 xl:gap-9 font-semibold text-sm items-center z-50" id="desktopNav">
+      <div class="relative group py-2"><a href="index.html" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Home</a></div>
+      <div class="relative group py-2">
+        <a href="about.html" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Who we are <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" alt="Marine Technology" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Supporting Global Energy</p><h4 class="text-xl font-extrabold leading-tight">Delivering subsea solutions safely since 1985.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Who we are</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="about.html" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Who we are</a>
+              <a href="history.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Our history</a>
+              <a href="opreate.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Where we operate</a>
+              <a href="team.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Leadership team</a>
+              <a href="values.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Values</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative group py-2">
+        <a href="services.html" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">What we do <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&q=80&w=600" alt="Subsea Services" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Specialist Solutions</p><h4 class="text-xl font-extrabold leading-tight">Integrated subsea services for complex offshore projects.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">What we do</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="survey.html" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Survey & robotics</a>
+              <a href="mechanical.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Mechanical solutions</a>
+              <a href="asset.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Asset integrity</a>
+              <a href="turnkey.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Turnkey services</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative group py-2"><a href="fleet.html" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Fleet & Equipment <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" alt="Fleet" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Global Capability</p><h4 class="text-xl font-extrabold leading-tight">One of the industry's largest rental fleets.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Fleet & Equipment</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="rental.html" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Rental fleet</a>
+              <a href="specialist.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Specialist tooling</a>
+              <a href="inspection.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Inspection systems</a>
+              <a href="innovation.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Innovation centre</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative group py-2"><a href="index.html#markets" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Markets <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=600" alt="Markets" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Serving Key Sectors</p><h4 class="text-xl font-extrabold leading-tight">Supporting renewables and mature energy markets worldwide.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Markets</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="index.html#markets" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Offshore renewables</a>
+              <a href="index.html#markets" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Oil & gas</a>
+              <a href="index.html#markets" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Energy transition</a>
+              <a href="index.html#markets" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Global footprint</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative group py-2"><a href="index.html#careers" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Careers <span class="text-[10px]">▾</span></a>
+        <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+          <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600" alt="Careers" class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Join Our Team</p><h4 class="text-xl font-extrabold leading-tight">Build your future with a global marine specialist.</h4></div>
+          </div>
+          <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+            <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Careers</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+              <a href="index.html#careers" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Why join us</a>
+              <a href="index.html#careers" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Life at EML</a>
+              <a href="index.html#careers" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Current vacancies</a>
+              <a href="index.html#careers" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Graduates</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="hidden lg:flex items-center gap-4 xl:gap-6 z-50">
+      <button id="themeToggle" class="text-logoNavy dark:text-white p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none" aria-label="Toggle dark mode">
+        <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 1111.25 3v0z"></path></svg>
+        <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+      </button>
+      <button class="btn-contact bg-logoBlue hover:bg-logoBlue/90 text-white px-6 py-2.5 rounded-md font-bold text-[13px] uppercase tracking-wide transition-all duration-300 hover:shadow-lg hover:shadow-logoBlue/20">Contact Us</button>
+    </div>
+    <div class="flex lg:hidden items-center gap-4 z-[101]">
+      <button id="themeToggleMobile" class="text-logoNavy dark:text-white p-2 rounded-full focus:outline-none" aria-label="Toggle dark mode">
+        <svg id="sunIconMobile" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 1111.25 3v0z"></path></svg>
+        <svg id="moonIconMobile" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+      </button>
+      <div class="flex flex-col gap-1.5 cursor-pointer" id="mobileBtn">
+        <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+        <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+        <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+      </div>
+    </div>
+    <nav id="mobileNav" class="fixed inset-0 h-screen overflow-y-auto bg-white/95 dark:bg-logoNavy-dark/95 px-6 py-24 transform -translate-y-full transition-transform duration-500 ease-in-out z-[100] backdrop-blur-md">
+      <div class="mx-auto flex w-full max-w-sm flex-col gap-2">
+        <a href="index.html" class="border-b border-slate-200 dark:border-white/10 py-3 text-left text-lg font-bold text-logoNavy dark:text-white hover:text-logoBlue transition-colors">Home</a>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileWho"><span>Who we are</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileWho" class="hidden space-y-2 pb-3 pl-4">
+            <a href="who%20we%20are.html" class="block py-1 text-sm font-medium text-logoBlue">Who we are</a>
+            <a href="who%20we%20are.html#our-purpose" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Our history</a>
+            <a href="who%20we%20are.html#global-presence" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Where we operate</a>
+            <a href="who%20we%20are.html#leadership" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Leadership team</a>
+            <a href="who%20we%20are.html#our-values" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Values</a>
+          </div>
+        </div>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileWhat"><span>What we do</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileWhat" class="hidden space-y-2 pb-3 pl-4">
+            <a href="#survey-robotics" class="block py-1 text-sm font-medium text-logoBlue">Survey & robotics</a>
+            <a href="#mechanical-solutions" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Mechanical solutions</a>
+            <a href="#asset-integrity" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Asset integrity</a>
+            <a href="#turnkey" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Turnkey services</a>
+          </div>
+        </div>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileFleet"><span>Fleet & Equipment</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileFleet" class="hidden space-y-2 pb-3 pl-4">
+            <a href="index.html#fleet-equipment" class="block py-1 text-sm font-medium text-logoBlue">Rental fleet</a>
+            <a href="index.html#fleet-equipment" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Specialist tooling</a>
+            <a href="index.html#fleet-equipment" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Inspection systems</a>
+            <a href="index.html#fleet-equipment" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Innovation centre</a>
+          </div>
+        </div>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileMarkets"><span>Markets</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileMarkets" class="hidden space-y-2 pb-3 pl-4">
+            <a href="index.html#markets" class="block py-1 text-sm font-medium text-logoBlue">Offshore renewables</a>
+            <a href="index.html#markets" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Oil & gas</a>
+            <a href="index.html#markets" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Energy transition</a>
+            <a href="index.html#markets" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Global footprint</a>
+          </div>
+        </div>
+        <div class="border-b border-slate-200 dark:border-white/10">
+          <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileCareers"><span>Careers</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+          <div id="mobileCareers" class="hidden space-y-2 pb-3 pl-4">
+            <a href="index.html#careers" class="block py-1 text-sm font-medium text-logoBlue">Why join us</a>
+            <a href="index.html#careers" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Life at EML</a>
+            <a href="index.html#careers" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Current vacancies</a>
+            <a href="index.html#careers" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Graduates</a>
+          </div>
+        </div>
+        <button class="mt-6 bg-logoBlue text-white px-8 py-3 rounded-md font-bold text-sm uppercase tracking-wide w-full">Contact Us</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========= HERO ========= -->
+  <section class="relative h-[80vh] sm:h-[85vh] w-full flex justify-center items-center overflow-hidden bg-logoNavy-dark border-b border-white/10">
+    <video class="absolute inset-0 w-full h-full object-cover z-0 opacity-30 dark:opacity-20" autoplay muted loop playsinline>
+      <source src="video/Untitled%20design%20(1).mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,51,102,0.4)_0%,rgba(0,18,36,0.9)_100%)] z-10"></div>
+    <div class="relative z-20 text-center max-w-5xl px-4 sm:px-6 text-white flex flex-col items-center">
+      <span class="text-logoBlue-light font-extrabold text-sm sm:text-base tracking-widest uppercase mb-4 animate-up" style="animation-delay:0.1s;">What we do</span>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-extrabold leading-tight mb-6 animate-up" style="animation-delay:0.2s;">
+        Subsea <span class="text-logoBlue">solutions</span> for the energy sector
+      </h1>
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 max-w-3xl mx-auto animate-up leading-relaxed" style="animation-delay:0.4s;">
+        From survey and robotics to mechanical solutions and asset integrity — we deliver integrated services that reduce risk and improve efficiency.
+      </p>
+      <div class="flex flex-wrap justify-center gap-5 mt-10 animate-up" style="animation-delay:0.6s;">
+        <div class="pill-stat px-6 py-3 rounded-full text-white text-sm font-semibold border border-white/20 backdrop-blur-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-4 h-4 text-logoBlue-light"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 14.25c2.1-1.5 4.2-2.25 6.75-2.25s4.65.75 6.75 2.25c1.5 1.05 3 1.95 4.5 2.4v-2.7c-1.5-.45-3-.75-4.5-1.2-2.4-.75-4.5-1.2-6.75-1.2s-4.35.45-6.75 1.2c-1.5.45-3 .75-4.5 1.2v2.7c1.5-.45 3-.75 4.5-1.2Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 10.5c2.1-1.5 4.2-2.25 6.75-2.25s4.65.75 6.75 2.25c1.5 1.05 3 1.95 4.5 2.4" /></svg><span>3 core service lines</span></div>
+        <div class="pill-stat px-6 py-3 rounded-full text-white text-sm font-semibold border border-white/20 backdrop-blur-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-4 h-4 text-logoBlue-light"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 3.75h3v16.5h-3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 7.5h12" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 16.5h12" /></svg><span>23,000+ assets</span></div>
+        <div class="pill-stat px-6 py-3 rounded-full text-white text-sm font-semibold border border-white/20 backdrop-blur-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-4 h-4 text-logoBlue-light"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21c4.4-3.8 7.5-7.2 7.5-10.2A5.25 5.25 0 0014.25 5.5c-.7 0-1.4.15-2.03.43A5.25 5.25 0 004.5 10.8C4.5 13.8 7.6 17.2 12 21Z" /></svg><span>Global support</span></div>
+      </div>
+    </div>
+    <div class="absolute -bottom-1.5 left-0 w-full overflow-hidden leading-none z-30">
+      <svg class="block w-[calc(100%+1.3px)] h-[40px] sm:h-[60px] lg:h-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C79.44,115.65,159.27,117.86,238.16,104.59,266.35,99.8,294.62,91.31,321.39,56.44Z" class="fill-white dark:fill-logoNavy-dark transition-colors duration-300"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========= OVERVIEW ========= -->
+  <section class="bg-white dark:bg-logoNavy-dark pt-16 sm:pt-24 pb-12 px-4 sm:px-6 border-b border-slate-200 dark:border-white/10">
+    <div class="max-w-7xl mx-auto text-center mb-14 reveal">
+      <span class="text-logoBlue font-extrabold text-sm tracking-widest uppercase">Our expertise</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white mt-2">Integrated subsea services</h2>
+      <p class="text-slate-500 dark:text-slate-300 max-w-2xl mx-auto mt-4">We deliver specialist equipment, advanced technologies and services to support offshore renewable energy and later-life oil & gas projects.</p>
+    </div>
+  </section>
+
+  <!-- ========= SERVICE 1: SURVEY & ROBOTICS ========= -->
+  <section id="survey-robotics" class="bg-slate-50 dark:bg-logoNavy-dark/40 py-20 px-4 sm:px-6 border-b border-slate-200 dark:border-white/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="order-2 lg:order-1 reveal">
+        <span class="text-logoBlue font-extrabold text-sm tracking-widest uppercase">Service line</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white leading-tight mt-3 mb-5">Survey &amp; robotics</h2>
+        <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-6">
+          Our survey and robotics division provides comprehensive subsea inspection, mapping and intervention services. We operate a fleet of work-class ROVs, autonomous systems and advanced geophysical survey equipment.
+        </p>
+        <ul class="space-y-3 text-slate-600 dark:text-slate-300 text-base">
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>ROV inspection, construction support and survey</span></li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Hydrographic and geophysical surveys</span></li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Autonomous underwater vehicle (AUV) services</span></li>
+        </ul>
+      </div>
+      <div class="order-1 lg:order-2 reveal">
+        <div class="rounded-xl overflow-hidden shadow-xl border border-slate-200 dark:border-white/10">
+          <img src="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&q=80&w=800" alt="Survey & Robotics" class="w-full h-72 object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SERVICE 2: MECHANICAL SOLUTIONS ========= -->
+  <section id="mechanical-solutions" class="bg-white dark:bg-logoNavy-dark py-20 px-4 sm:px-6 border-b border-slate-200 dark:border-white/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="reveal">
+        <div class="rounded-xl overflow-hidden shadow-xl border border-slate-200 dark:border-white/10">
+          <img src="https://images.unsplash.com/photo-1580982546416-0158498b3c5a?auto=format&fit=crop&q=80&w=800" alt="Mechanical Solutions" class="w-full h-72 object-cover">
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="text-logoBlue font-extrabold text-sm tracking-widest uppercase">Service line</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white leading-tight mt-3 mb-5">Mechanical solutions</h2>
+        <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-6">
+          We provide specialist mechanical services including subsea bolting, flange management, machining, and hot tapping. Our teams are highly experienced in both planned maintenance and emergency response.
+        </p>
+        <ul class="space-y-3 text-slate-600 dark:text-slate-300 text-base">
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Subsea bolting and flange management</span></li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>On-site machining and welding</span></li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Hot tapping and plugging services</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SERVICE 3: ASSET INTEGRITY ========= -->
+  <section id="asset-integrity" class="bg-slate-50 dark:bg-logoNavy-dark/40 py-20 px-4 sm:px-6 border-b border-slate-200 dark:border-white/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="order-2 lg:order-1 reveal">
+        <span class="text-logoBlue font-extrabold text-sm tracking-widest uppercase">Service line</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white leading-tight mt-3 mb-5">Asset integrity</h2>
+        <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-6">
+          Our asset integrity services help clients extend the life of their offshore infrastructure. We combine inspection, monitoring and repair expertise to deliver data-driven integrity management.
+        </p>
+        <ul class="space-y-3 text-slate-600 dark:text-slate-300 text-base">
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Corrosion and erosion monitoring</span></li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>NDT and inspection services</span></li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Remedial and repair solutions</span></li>
+        </ul>
+      </div>
+      <div class="order-1 lg:order-2 reveal">
+        <div class="rounded-xl overflow-hidden shadow-xl border border-slate-200 dark:border-white/10">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=800" alt="Asset Integrity" class="w-full h-72 object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= TURNKEY SERVICES ========= -->
+  <section id="turnkey" class="bg-white dark:bg-logoNavy-dark py-20 px-4 sm:px-6 border-b border-slate-200 dark:border-white/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="reveal">
+        <div class="rounded-xl overflow-hidden shadow-xl border border-slate-200 dark:border-white/10">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="Turnkey Services" class="w-full h-72 object-cover">
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="text-logoBlue font-extrabold text-sm tracking-widest uppercase">Integrated offering</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white leading-tight mt-3 mb-5">Turnkey project solutions</h2>
+        <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-6">
+          We manage end-to-end projects, combining our core service lines to deliver integrated subsea campaigns. From early engineering to execution and decommissioning, we provide a single point of accountability.
+        </p>
+        <ul class="space-y-3 text-slate-600 dark:text-slate-300 text-base">
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Project management and engineering</span></li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Multi-service campaign delivery</span></li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-logoBlue shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Global support and local execution</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= CONTACT CTA ========= -->
+  <section class="relative py-24 sm:py-32 overflow-hidden bg-logoNavy-dark border-b border-white/10">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover object-top opacity-70" alt="Maritime experts">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-logoNavy-dark/40 via-logoNavy-dark/20 to-transparent z-10"></div>
+    <div class="absolute top-0 right-0 w-full lg:w-3/4 h-full backdrop-blur-2xl bg-white/5 border-l border-white/10 z-[15] hidden md:block" style="clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-start justify-center h-full text-white">
+      <span class="text-logoBlue-light font-extrabold text-base sm:text-lg mb-3 tracking-wide reveal">Ready to discuss your project?</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight max-w-3xl mb-8 reveal">Our international team of experts are ready to support you</h2>
+      <a href="#" class="inline-flex items-center bg-logoBlue text-white px-8 py-4 rounded-md font-bold text-base shadow-2xl hover:bg-logoBlue/90 hover:scale-105 transition-all duration-300 reveal">Contact us</a>
+    </div>
+  </section>
+
+  <!-- ========= FOOTER ========= -->
+  <footer class="bg-[#001730] pt-20 pb-12 px-6 lg:px-12 border-t border-white/5 relative z-20">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+      <div class="lg:col-span-3">
+        <div class="bg-white inline-block px-4 py-2 rounded-lg mb-6 shadow-md">
+          <img src="img/WhatsApp Image 2026-06-14 at 4.24.52 PM.jpeg" alt="Enhanced Marine Limited Logo" class="w-auto h-[42px]">
+        </div>
+      </div>
+      <div class="lg:col-span-2">
+        <h4 class="text-logoBlue font-bold text-[15px] mb-4">Who we are</h4>
+        <ul class="flex flex-col gap-2.5 mb-8">
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">History</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Locations</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Leadership team</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Values</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors underline underline-offset-4 decoration-slate-500">QHSE</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Sustainability</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <h4 class="text-logoBlue font-bold text-[15px] mb-4">What we do</h4>
+        <ul class="flex flex-col gap-2.5">
+          <li><a href="#survey-robotics" class="text-slate-300 hover:text-white text-[14px] transition-colors">Survey & robotics</a></li>
+          <li><a href="#mechanical-solutions" class="text-slate-300 hover:text-white text-[14px] transition-colors">Mechanical solutions</a></li>
+          <li><a href="#asset-integrity" class="text-slate-300 hover:text-white text-[14px] transition-colors">Asset integrity</a></li>
+          <li><a href="#turnkey" class="text-slate-300 hover:text-white text-[14px] transition-colors">Turnkey services</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <h4 class="text-logoBlue font-bold text-[15px] mb-4">Markets</h4>
+        <ul class="flex flex-col gap-2.5">
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Renewables</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Oil & gas</a></li>
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Infrastructure</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-1">
+        <h4 class="text-logoBlue font-bold text-[15px] mb-4">Equipment</h4>
+        <ul class="flex flex-col gap-2.5">
+          <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Explore all</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2 flex justify-start lg:justify-end">
+        <a href="#" class="inline-block border-2 border-white text-white rounded-md px-6 py-2.5 font-bold text-[14px] hover:bg-white hover:text-logoNavy transition-colors h-fit shadow-lg">Client portal</a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTopBtn" class="fixed bottom-6 right-6 bg-logoBlue text-white p-3 rounded-md shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-logoBlue/90 hover:-translate-y-1 z-50">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbar = document.getElementById('navbar');
+      const backToTopBtn = document.getElementById('backToTopBtn');
+      const htmlElement = document.documentElement;
+
+      // Desktop dropdown
+      const desktopGroups = document.querySelectorAll('#desktopNav .group');
+      let dropdownCloseTimer;
+      const closeDropdowns = () => desktopGroups.forEach(g => g.classList.remove('dropdown-open'));
+      desktopGroups.forEach(group => {
+        const dropdown = group.querySelector('.mega-dropdown');
+        if (!dropdown) return;
+        const open = () => { clearTimeout(dropdownCloseTimer); closeDropdowns(); group.classList.add('dropdown-open'); };
+        const scheduleClose = () => { clearTimeout(dropdownCloseTimer); dropdownCloseTimer = setTimeout(() => group.classList.remove('dropdown-open'), 220); };
+        group.addEventListener('mouseenter', open);
+        group.addEventListener('mouseleave', scheduleClose);
+        dropdown.addEventListener('mouseenter', open);
+        dropdown.addEventListener('mouseleave', scheduleClose);
+        dropdown.querySelectorAll('a').forEach(link => link.addEventListener('click', closeDropdowns));
+      });
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+        if (window.scrollY > 400) {
+          backToTopBtn.classList.remove('opacity-0', 'invisible');
+          backToTopBtn.classList.add('opacity-100', 'visible');
+        } else {
+          backToTopBtn.classList.add('opacity-0', 'invisible');
+          backToTopBtn.classList.remove('opacity-100', 'visible');
+        }
+      });
+      backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // Mobile nav
+      const mobileBtn = document.getElementById('mobileBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const bars = mobileBtn.querySelectorAll('.mobile-bar');
+      const sectionToggles = document.querySelectorAll('.mobile-section-toggle');
+      const closeMobileSections = () => {
+        sectionToggles.forEach(btn => {
+          const target = document.getElementById(btn.getAttribute('data-target'));
+          const icon = btn.querySelector('.mobile-section-icon');
+          target?.classList.add('hidden');
+          icon?.classList.remove('rotate-180');
+        });
+      };
+      mobileBtn.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.contains('translate-y-0');
+        if (!isOpen) {
+          mobileNav.classList.remove('-translate-y-full');
+          mobileNav.classList.add('translate-y-0');
+          bars[0].classList.add('translate-y-2', 'rotate-45');
+          bars[1].classList.add('opacity-0');
+          bars[2].classList.add('-translate-y-2.5', '-rotate-45');
+        } else {
+          mobileNav.classList.add('-translate-y-full');
+          mobileNav.classList.remove('translate-y-0');
+          bars[0].classList.remove('translate-y-2', 'rotate-45');
+          bars[1].classList.remove('opacity-0');
+          bars[2].classList.remove('-translate-y-2.5', '-rotate-45');
+          closeMobileSections();
+        }
+      });
+      sectionToggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.getAttribute('data-target'));
+          const icon = btn.querySelector('.mobile-section-icon');
+          const isOpen = !target.classList.contains('hidden');
+          closeMobileSections();
+          if (!isOpen) { target.classList.remove('hidden'); icon.classList.add('rotate-180'); }
+        });
+      });
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.add('-translate-y-full');
+          mobileNav.classList.remove('translate-y-0');
+          bars[0].classList.remove('translate-y-2', 'rotate-45');
+          bars[1].classList.remove('opacity-0');
+          bars[2].classList.remove('-translate-y-2.5', '-rotate-45');
+          closeMobileSections();
+        });
+      });
+
+      // Dark mode
+      const themeToggle = document.getElementById('themeToggle');
+      const themeToggleMobile = document.getElementById('themeToggleMobile');
+      const sunIcon = document.getElementById('sunIcon'), moonIcon = document.getElementById('moonIcon');
+      const sunIconMobile = document.getElementById('sunIconMobile'), moonIconMobile = document.getElementById('moonIconMobile');
+      function updateTheme(isDark) {
+        if (isDark) { htmlElement.classList.add('dark'); htmlElement.classList.remove('light'); sunIcon.classList.remove('hidden'); moonIcon.classList.add('hidden'); sunIconMobile.classList.remove('hidden'); moonIconMobile.classList.add('hidden'); }
+        else { htmlElement.classList.remove('dark'); htmlElement.classList.add('light'); sunIcon.classList.add('hidden'); moonIcon.classList.remove('hidden'); sunIconMobile.classList.add('hidden'); moonIconMobile.classList.remove('hidden'); }
+      }
+      let isDark = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      updateTheme(isDark);
+      const handleToggle = () => { isDark = !htmlElement.classList.contains('dark'); localStorage.setItem('theme', isDark ? 'dark' : 'light'); updateTheme(isDark); };
+      themeToggle.addEventListener('click', handleToggle);
+      themeToggleMobile.addEventListener('click', handleToggle);
+
+      // Scroll reveal
+      const revealEls = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

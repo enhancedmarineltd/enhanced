@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Careers — Enhanced Marine Limited</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        logoNavy: { DEFAULT: '#003366', dark: '#001a33' },
+                        logoBlue: { DEFAULT: '#0077d6', light: '#3399ff' }
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- same custom styles as main template --- */
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #0077d6;
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        header.scrolled {
+            top: 0 !important;
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-bottom-color: rgba(0, 51, 102, 0.08) !important;
+        }
+        .dark header.scrolled {
+            background-color: rgba(0, 26, 51, 0.95) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+        }
+        header.scrolled .nav-link {
+            color: #003366 !important;
+        }
+        .dark header.scrolled .nav-link {
+            color: #ffffff !important;
+        }
+        .nav-link {
+            z-index: 210;
+        }
+
+        header,
+        #desktopNav {
+            overflow: visible;
+        }
+        #desktopNav .group {
+            position: static;
+        }
+        .mega-dropdown {
+            position: absolute !important;
+            top: 100% !important;
+            left: 50% !important;
+            width: min(1100px, calc(100vw - 2rem)) !important;
+            max-height: calc(100vh - 110px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateX(-50%) translateY(8px) !important;
+        }
+        #desktopNav .group:hover .mega-dropdown,
+        #desktopNav .group:focus-within .mega-dropdown,
+        #desktopNav .group.dropdown-open .mega-dropdown,
+        .mega-dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) !important;
+            pointer-events: auto;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .career-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+        .dark .career-card {
+            background-color: rgba(0, 34, 68, 0.95);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .career-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            background: radial-gradient(circle at top, rgba(51, 153, 255, 0.18), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .career-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 119, 214, 0.75);
+            box-shadow: 0 0 0 1px rgba(0, 119, 214, 0.25), 0 0 35px rgba(51, 153, 255, 0.18);
+        }
+        .career-card:hover::before {
+            opacity: 1;
+        }
+        .career-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes scrollWheel {
+            0% {
+                top: 6px;
+                opacity: 1;
+            }
+            100% {
+                top: 20px;
+                opacity: 0;
+            }
+        }
+        .animate-wheel {
+            animation: scrollWheel 2s infinite ease-in-out;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* careers page extra */
+        .gradient-border {
+            border-image: linear-gradient(135deg, #0077d6, #3399ff) 1;
+        }
+        .vacancy-item {
+            transition: all 0.2s ease;
+        }
+        .vacancy-item:hover {
+            background: rgba(0, 119, 214, 0.04);
+            border-color: #0077d6;
+        }
+        .dark .vacancy-item:hover {
+            background: rgba(0, 119, 214, 0.08);
+        }
+    </style>
+</head>
+<body class="font-montserrat bg-white dark:bg-logoNavy-dark text-slate-800 dark:text-white overflow-x-hidden transition-colors duration-300">
+
+    <!-- ====== TOP BAR ====== -->
+    <div class="hidden lg:flex bg-[#f4f7fa] dark:bg-[#001224] px-12 py-2.5 justify-end items-center text-xs font-semibold uppercase tracking-wide relative z-[100] border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
+        <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors duration-300">Case studies</a>
+        <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors duration-300">News & Events <span class="text-[9px]">▼</span></a>
+        <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors duration-300">Investors</a>
+        <a href="#" class="ml-8 text-logoNavy/70 dark:text-slate-300 hover:text-logoBlue transition-colors duration-300">Information centre</a>
+    </div>
+
+    <!-- ====== HEADER / NAV ====== -->
+    <header id="navbar" class="fixed top-0 lg:top-[38px] w-full px-4 sm:px-6 lg:px-12 py-4 flex justify-between items-center z-[99] bg-white/80 dark:bg-logoNavy-dark/40 backdrop-blur-md border-b border-slate-200 dark:border-white/10 transition-all duration-500">
+        <div class="bg-white dark:bg-white px-3 sm:px-4 py-1.5 rounded-lg shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer z-50">
+            <img src="img/WhatsApp Image 2026-06-14 at 4.24.52 PM.jpeg" alt="Enhanced Marine Limited Logo" class="logo-img h-[38px] sm:h-[45px] transition-all duration-300">
+        </div>
+
+        <nav class="hidden lg:flex gap-7 xl:gap-9 font-semibold text-sm items-center z-50" id="desktopNav">
+            <div class="relative group py-2"><a href="index.html" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Home</a></div>
+            <!-- Who we are -->
+            <div class="relative group py-2">
+                <a href="about.html" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Who we are <span class="text-[10px]">▾</span></a>
+                <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+                    <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" alt="Marine Technology Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                        <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Supporting Global Energy</p><h4 class="text-xl font-extrabold leading-tight">Delivering subsea solutions safely since 1985.</h4></div>
+                    </div>
+                    <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+                        <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Who we are</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+                            <a href="about.html" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Who we are</a>
+                            <a href="history.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Our history</a>
+                            <a href="opreate.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Where we operate</a>
+                            <a href="team.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Leadership team</a>
+                            <a href="values.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Values</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- What we do -->
+            <div class="relative group py-2">
+                <a href="index.html#what-we-do" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">What we do <span class="text-[10px]">▾</span></a>
+                <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+                    <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+                        <img src="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&q=80&w=600" alt="Subsea Services Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                        <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Specialist Solutions</p><h4 class="text-xl font-extrabold leading-tight">Integrated subsea services for complex offshore projects.</h4></div>
+                    </div>
+                    <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+                        <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">What we do</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+                            <a href="survey.html" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Survey & robotics</a>
+                            <a href="mechanical.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Mechanical solutions</a>
+                            <a href="asset.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Asset integrity</a>
+                            <a href="turnkey.html" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Turnkey services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fleet & Equipment -->
+            <div class="relative group py-2">
+                <a href="index.html#fleet-equipment" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Fleet & Equipment <span class="text-[10px]">▾</span></a>
+                <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+                    <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" alt="Fleet Equipment Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                        <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Global Capability</p><h4 class="text-xl font-extrabold leading-tight">One of the industry's largest rental fleets.</h4></div>
+                    </div>
+                    <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+                        <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Fleet & Equipment</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+                            <a href="index.html#fleet-equipment" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Rental fleet</a>
+                            <a href="index.html#fleet-equipment" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Specialist tooling</a>
+                            <a href="index.html#fleet-equipment" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Inspection systems</a>
+                            <a href="index.html#fleet-equipment" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Innovation centre</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Markets -->
+            <div class="relative group py-2">
+                <a href="index.html#markets" class="nav-link relative text-logoNavy dark:text-white transition-colors duration-300 pb-2 flex items-center gap-1">Markets <span class="text-[10px]">▾</span></a>
+                <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+                    <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=600" alt="Markets Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                        <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Serving Key Sectors</p><h4 class="text-xl font-extrabold leading-tight">Supporting renewables and mature energy markets worldwide.</h4></div>
+                    </div>
+                    <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+                        <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Markets</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+                            <a href="index.html#markets" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Offshore renewables</a>
+                            <a href="index.html#markets" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Oil & gas</a>
+                            <a href="index.html#markets" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Energy transition</a>
+                            <a href="index.html#markets" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Global footprint</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Careers (active) -->
+            <div class="relative group py-2">
+                <a href="#" class="nav-link relative text-logoBlue dark:text-logoBlue-light transition-colors duration-300 pb-2 flex items-center gap-1 border-b-2 border-logoBlue">Careers <span class="text-[10px]">▾</span></a>
+                <div class="mega-dropdown absolute left-1/2 top-[100%] w-[min(92vw,1100px)] max-w-[calc(100vw-2rem)] bg-white dark:bg-logoNavy text-slate-800 dark:text-white shadow-xl border border-slate-100 dark:border-white/10 rounded-b-lg opacity-0 visibility-hidden -translate-x-1/2 translate-y-2 transition-all duration-300 z-[200] overflow-hidden flex flex-col md:flex-row">
+                    <div class="w-full md:w-[40%] bg-slate-900 relative min-h-[250px] md:min-h-auto flex flex-col justify-end p-8 text-white">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600" alt="Careers Panel" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                        <div class="relative z-10"><p class="text-xs font-bold uppercase text-logoBlue-light tracking-widest mb-2">Join Our Team</p><h4 class="text-xl font-extrabold leading-tight">Build your future with a global marine specialist.</h4></div>
+                    </div>
+                    <div class="w-full md:w-[60%] p-8 flex flex-col justify-center bg-white dark:bg-[#002244]">
+                        <h3 class="text-2xl font-extrabold text-logoNavy dark:text-white mb-6 tracking-tight">Careers</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 font-semibold text-sm">
+                            <a href="#why-join" class="text-logoBlue border-b-2 border-logoBlue pb-1 w-fit transition-colors">Why join us</a>
+                            <a href="#life-at-eml" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Life at EML</a>
+                            <a href="#vacancies" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Current vacancies</a>
+                            <a href="#graduates" class="text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors pb-1 border-b border-transparent hover:border-slate-200">Graduates</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="hidden lg:flex items-center gap-4 xl:gap-6 z-50">
+            <button id="themeToggle" class="text-logoNavy dark:text-white p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none" aria-label="Toggle dark mode">
+                <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 1111.25 3v0z"></path></svg>
+                <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+            <button class="btn-contact bg-logoBlue hover:bg-logoBlue/90 text-white px-6 py-2.5 rounded-md font-bold text-[13px] uppercase tracking-wide transition-all duration-300 hover:shadow-lg hover:shadow-logoBlue/20">Contact Us</button>
+        </div>
+
+        <div class="flex lg:hidden items-center gap-4 z-[101]">
+            <button id="themeToggleMobile" class="text-logoNavy dark:text-white p-2 rounded-full focus:outline-none" aria-label="Toggle dark mode">
+                <svg id="sunIconMobile" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 1111.25 3v0z"></path></svg>
+                <svg id="moonIconMobile" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+            <div class="flex flex-col gap-1.5 cursor-pointer" id="mobileBtn">
+                <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+                <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+                <span class="mobile-bar block w-6 h-[3px] bg-logoNavy dark:bg-white transition-all duration-300 origin-center"></span>
+            </div>
+        </div>
+
+        <!-- mobile nav -->
+        <nav id="mobileNav" class="fixed inset-0 h-screen overflow-y-auto bg-white/95 dark:bg-logoNavy-dark/95 px-6 py-24 transform -translate-y-full transition-transform duration-500 ease-in-out z-[100] backdrop-blur-md">
+            <div class="mx-auto flex w-full max-w-sm flex-col gap-2">
+                <a href="index.html" class="border-b border-slate-200 dark:border-white/10 py-3 text-left text-lg font-bold text-logoNavy dark:text-white hover:text-logoBlue transition-colors">Home</a>
+                <div class="border-b border-slate-200 dark:border-white/10">
+                    <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileWho"><span>Who we are</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div id="mobileWho" class="hidden space-y-2 pb-3 pl-4">
+                        <a href="who%20we%20are.html" class="block py-1 text-sm font-medium text-logoBlue">Who we are</a>
+                        <a href="who%20we%20are.html#our-purpose" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Our history</a>
+                        <a href="who%20we%20are.html#global-presence" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Where we operate</a>
+                        <a href="who%20we%20are.html#leadership" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Leadership team</a>
+                        <a href="who%20we%20are.html#our-values" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Values</a>
+                    </div>
+                </div>
+                <div class="border-b border-slate-200 dark:border-white/10">
+                    <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileWhat"><span>What we do</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div id="mobileWhat" class="hidden space-y-2 pb-3 pl-4">
+                        <a href="index.html#what-we-do" class="block py-1 text-sm font-medium text-logoBlue">Survey & robotics</a>
+                        <a href="index.html#what-we-do" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Mechanical solutions</a>
+                        <a href="index.html#what-we-do" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Asset integrity</a>
+                        <a href="index.html#what-we-do" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Turnkey services</a>
+                    </div>
+                </div>
+                <div class="border-b border-slate-200 dark:border-white/10">
+                    <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileFleet"><span>Fleet & Equipment</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div id="mobileFleet" class="hidden space-y-2 pb-3 pl-4">
+                        <a href="index.html#fleet-equipment" class="block py-1 text-sm font-medium text-logoBlue">Rental fleet</a>
+                        <a href="index.html#fleet-equipment" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Specialist tooling</a>
+                        <a href="index.html#fleet-equipment" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Inspection systems</a>
+                        <a href="index.html#fleet-equipment" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Innovation centre</a>
+                    </div>
+                </div>
+                <div class="border-b border-slate-200 dark:border-white/10">
+                    <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileMarkets"><span>Markets</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div id="mobileMarkets" class="hidden space-y-2 pb-3 pl-4">
+                        <a href="index.html#markets" class="block py-1 text-sm font-medium text-logoBlue">Offshore renewables</a>
+                        <a href="index.html#markets" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Oil & gas</a>
+                        <a href="index.html#markets" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Energy transition</a>
+                        <a href="index.html#markets" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Global footprint</a>
+                    </div>
+                </div>
+                <div class="border-b border-slate-200 dark:border-white/10">
+                    <button class="mobile-section-toggle flex w-full items-center justify-between py-3 text-left text-lg font-bold text-logoNavy dark:text-white" data-target="mobileCareers"><span>Careers</span><svg class="mobile-section-icon h-5 w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div id="mobileCareers" class="hidden space-y-2 pb-3 pl-4">
+                        <a href="#why-join" class="block py-1 text-sm font-medium text-logoBlue">Why join us</a>
+                        <a href="#life-at-eml" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Life at EML</a>
+                        <a href="#vacancies" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Current vacancies</a>
+                        <a href="#graduates" class="block py-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-logoBlue transition-colors">Graduates</a>
+                    </div>
+                </div>
+                <button class="mt-6 bg-logoBlue text-white px-8 py-3 rounded-md font-bold text-sm uppercase tracking-wide w-full">Contact Us</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ====== HERO ====== -->
+    <section class="relative h-[75vh] sm:h-[80vh] w-full flex justify-center items-center overflow-hidden bg-logoNavy-dark border-b border-white/10">
+        <video class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 dark:opacity-30" autoplay muted loop playsinline>
+            <source src="video/Untitled design (1).mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,51,102,0.3)_0%,rgba(0,18,36,0.9)_100%)] z-10"></div>
+        <div class="relative z-20 text-center max-w-4xl px-4 sm:px-6 text-white flex flex-col items-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 animate-up" style="animation-delay:0.2s;">Careers at <span class="text-logoBlue">Enhanced Marine</span></h1>
+            <p class="text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl animate-up" style="animation-delay:0.4s;">Join a global team that delivers subsea excellence — where your career can make a real impact.</p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4 animate-up" style="animation-delay:0.6s;">
+                <a href="#vacancies" class="bg-logoBlue hover:bg-logoBlue/90 text-white px-8 py-3.5 rounded-md font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-logoBlue/20">View vacancies</a>
+                <a href="#why-join" class="border border-white/40 hover:border-white text-white px-8 py-3.5 rounded-md font-bold text-sm uppercase tracking-wider transition-all duration-300">Why join us</a>
+            </div>
+        </div>
+        <div class="absolute -bottom-1.5 left-0 w-full overflow-hidden leading-none z-30">
+            <svg class="block w-[calc(100%+1.3px)] h-[40px] sm:h-[60px] lg:h-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C79.44,115.65,159.27,117.86,238.16,104.59,266.35,99.8,294.62,91.31,321.39,56.44Z" class="fill-white dark:fill-logoNavy-dark transition-colors duration-300"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ====== WHY JOIN US ====== -->
+    <section id="why-join" class="py-16 sm:py-24 px-4 sm:px-6 bg-white dark:bg-logoNavy-dark transition-colors duration-300 border-b border-slate-200 dark:border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <span class="text-logoBlue font-extrabold text-sm uppercase tracking-widest">Why join us</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white mt-2">Build a career with purpose</h2>
+                <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mt-3">At Enhanced Marine, we combine technical excellence with a people-first culture. Here’s what makes us different.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="career-card p-6 sm:p-8 text-center reveal">
+                    <div class="w-14 h-14 rounded-full bg-logoBlue/10 dark:bg-logoBlue/20 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-logoBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-logoNavy dark:text-white mb-2">Global impact</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Work on world-class offshore energy projects that shape the future of renewables and subsea technology.</p>
+                </div>
+                <div class="career-card p-6 sm:p-8 text-center reveal">
+                    <div class="w-14 h-14 rounded-full bg-logoBlue/10 dark:bg-logoBlue/20 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-logoBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-logoNavy dark:text-white mb-2">Innovation & technology</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Work with cutting-edge ROVs, survey systems, and subsea tooling — we invest in the latest tech.</p>
+                </div>
+                <div class="career-card p-6 sm:p-8 text-center reveal">
+                    <div class="w-14 h-14 rounded-full bg-logoBlue/10 dark:bg-logoBlue/20 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-logoBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-logoNavy dark:text-white mb-2">Inclusive culture</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">We believe diverse teams drive better outcomes. Everyone is respected, valued, and empowered.</p>
+                </div>
+                <div class="career-card p-6 sm:p-8 text-center reveal">
+                    <div class="w-14 h-14 rounded-full bg-logoBlue/10 dark:bg-logoBlue/20 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-logoBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-logoNavy dark:text-white mb-2">Career development</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">From apprenticeships to leadership pathways, we support your growth with training and mentorship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== LIFE AT EML ====== -->
+    <section id="life-at-eml" class="py-16 sm:py-24 px-4 sm:px-6 bg-slate-50 dark:bg-logoNavy-dark/30 transition-colors duration-300 border-b border-slate-200 dark:border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <span class="text-logoBlue font-extrabold text-sm uppercase tracking-widest">Life at EML</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white mt-2">A place where people thrive</h2>
+                <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mt-3">We’re proud of our inclusive, supportive environment. Here’s a glimpse into life at Enhanced Marine.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="career-card overflow-hidden group reveal">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600" alt="Team collaboration" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-logoNavy dark:text-white">Collaborative teams</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">We work together across disciplines, sharing knowledge and supporting each other every day.</p>
+                    </div>
+                </div>
+                <div class="career-card overflow-hidden group reveal">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=600" alt="Field work" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-logoNavy dark:text-white">Hands-on field experience</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">From offshore projects to workshop innovation, our work is varied, challenging, and rewarding.</p>
+                    </div>
+                </div>
+                <div class="career-card overflow-hidden group reveal">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=600" alt="Social events" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-logoNavy dark:text-white">Community & wellbeing</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">We celebrate wins together and prioritise wellbeing with social events, sports, and mental health support.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center reveal">
+                <a href="#" class="inline-flex items-center gap-2 text-logoBlue font-bold text-sm uppercase tracking-wide hover:gap-3 transition-all">
+                    Discover more about life at EML
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CURRENT VACANCIES ====== -->
+    <section id="vacancies" class="py-16 sm:py-24 px-4 sm:px-6 bg-white dark:bg-logoNavy-dark transition-colors duration-300 border-b border-slate-200 dark:border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <span class="text-logoBlue font-extrabold text-sm uppercase tracking-widest">Current vacancies</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white mt-2">Join our team today</h2>
+                <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mt-3">Explore our latest opportunities across engineering, operations, sales, and support functions.</p>
+            </div>
+
+            <div class="space-y-4 max-w-4xl mx-auto">
+                <!-- vacancy items -->
+                <div class="vacancy-item flex flex-col sm:flex-row sm:items-center justify-between p-5 sm:p-6 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-logoNavy/40 reveal">
+                    <div>
+                        <h3 class="text-lg font-bold text-logoNavy dark:text-white">Senior Subsea Engineer</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Aberdeen, UK · Full-time · Experienced</p>
+                    </div>
+                    <a href="#" class="mt-3 sm:mt-0 inline-block bg-logoBlue text-white px-5 py-2 rounded-md font-semibold text-sm hover:bg-logoBlue/90 transition-colors">Apply now</a>
+                </div>
+                <div class="vacancy-item flex flex-col sm:flex-row sm:items-center justify-between p-5 sm:p-6 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-logoNavy/40 reveal">
+                    <div>
+                        <h3 class="text-lg font-bold text-logoNavy dark:text-white">ROV Pilot / Technician</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Houston, TX · Full-time · Mid-level</p>
+                    </div>
+                    <a href="#" class="mt-3 sm:mt-0 inline-block bg-logoBlue text-white px-5 py-2 rounded-md font-semibold text-sm hover:bg-logoBlue/90 transition-colors">Apply now</a>
+                </div>
+                <div class="vacancy-item flex flex-col sm:flex-row sm:items-center justify-between p-5 sm:p-6 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-logoNavy/40 reveal">
+                    <div>
+                        <h3 class="text-lg font-bold text-logoNavy dark:text-white">Project Manager – Renewables</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Singapore · Full-time · Senior</p>
+                    </div>
+                    <a href="#" class="mt-3 sm:mt-0 inline-block bg-logoBlue text-white px-5 py-2 rounded-md font-semibold text-sm hover:bg-logoBlue/90 transition-colors">Apply now</a>
+                </div>
+                <div class="vacancy-item flex flex-col sm:flex-row sm:items-center justify-between p-5 sm:p-6 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-logoNavy/40 reveal">
+                    <div>
+                        <h3 class="text-lg font-bold text-logoNavy dark:text-white">Mechanical Designer</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Perth, AU · Full-time · Mid-level</p>
+                    </div>
+                    <a href="#" class="mt-3 sm:mt-0 inline-block bg-logoBlue text-white px-5 py-2 rounded-md font-semibold text-sm hover:bg-logoBlue/90 transition-colors">Apply now</a>
+                </div>
+                <div class="vacancy-item flex flex-col sm:flex-row sm:items-center justify-between p-5 sm:p-6 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-logoNavy/40 reveal">
+                    <div>
+                        <h3 class="text-lg font-bold text-logoNavy dark:text-white">Sales & Business Development</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Dubai, UAE · Full-time · Experienced</p>
+                    </div>
+                    <a href="#" class="mt-3 sm:mt-0 inline-block bg-logoBlue text-white px-5 py-2 rounded-md font-semibold text-sm hover:bg-logoBlue/90 transition-colors">Apply now</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-10 reveal">
+                <a href="#" class="inline-block border-2 border-logoNavy dark:border-white text-logoNavy dark:text-white px-8 py-3 rounded-md font-bold text-sm hover:bg-logoNavy dark:hover:bg-white hover:text-white dark:hover:text-logoNavy transition-colors">View all vacancies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== GRADUATES ====== -->
+    <section id="graduates" class="py-16 sm:py-24 px-4 sm:px-6 bg-slate-50 dark:bg-logoNavy-dark/30 transition-colors duration-300 border-b border-slate-200 dark:border-white/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1 reveal">
+                <span class="text-logoBlue font-extrabold text-sm uppercase tracking-widest">Graduates & early careers</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-logoNavy dark:text-white mt-2 leading-tight">Start your journey with us</h2>
+                <p class="text-slate-600 dark:text-slate-300 mt-4 leading-relaxed">Our graduate programme offers hands-on experience, structured training, and mentorship from industry experts. We’re looking for bright, ambitious individuals who are ready to make their mark in the subsea and offshore energy sector.</p>
+                <ul class="mt-6 space-y-3">
+                    <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300"><svg class="w-5 h-5 text-logoBlue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>2-year rotational programme across engineering, operations, and commercial teams</span></li>
+                    <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300"><svg class="w-5 h-5 text-logoBlue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Personalised development plan with dedicated mentor and regular reviews</span></li>
+                    <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300"><svg class="w-5 h-5 text-logoBlue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Opportunities to work on live projects and gain international exposure</span></li>
+                </ul>
+                <a href="#" class="mt-8 inline-block bg-logoBlue text-white px-8 py-3.5 rounded-md font-bold text-sm uppercase tracking-wider hover:bg-logoBlue/90 transition-all shadow-lg shadow-logoBlue/20">Explore graduate roles</a>
+            </div>
+            <div class="order-1 lg:order-2 reveal">
+                <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-white/5">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800" alt="Graduates" class="w-full h-80 sm:h-96 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CTA BANNER ====== -->
+    <section class="relative py-24 sm:py-32 overflow-hidden bg-logoNavy-dark border-b border-white/10">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover object-top opacity-70" alt="Maritime experts">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-logoNavy-dark/40 via-logoNavy-dark/20 to-transparent z-10"></div>
+        <div class="absolute top-0 right-0 w-full lg:w-3/4 h-full backdrop-blur-2xl bg-white/5 border-l border-white/10 z-[15] hidden md:block" style="clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-start justify-center h-full text-white">
+            <span class="text-logoBlue-light font-extrabold text-base sm:text-lg mb-3 tracking-wide reveal">Ready to make an impact?</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight max-w-3xl mb-8 reveal">Join a team that’s shaping the future of offshore energy</h2>
+            <a href="#vacancies" class="inline-flex items-center bg-logoBlue text-white px-8 py-4 rounded-md font-bold text-base shadow-2xl hover:bg-logoBlue/90 hover:scale-105 transition-all duration-300 reveal">View current vacancies</a>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="bg-[#001730] pt-20 pb-12 px-6 lg:px-12 border-t border-white/5 relative z-20">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+            <div class="lg:col-span-3">
+                <div class="bg-white inline-block px-4 py-2 rounded-lg mb-6 shadow-md">
+                    <img src="img/WhatsApp Image 2026-06-14 at 4.24.52 PM.jpeg" alt="Enhanced Marine Limited Logo" class="w-auto h-[42px]">
+                </div>
+            </div>
+            <div class="lg:col-span-2">
+                <h4 class="text-logoBlue font-bold text-[15px] mb-4">Who we are</h4>
+                <ul class="flex flex-col gap-2.5 mb-8">
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">History</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Locations</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Leadership team</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Values</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors underline underline-offset-4 decoration-slate-500">Quality, health, safety and environment</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Sustainability</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Experts</a></li>
+                </ul>
+            </div>
+            <div class="lg:col-span-2">
+                <h4 class="text-logoBlue font-bold text-[15px] mb-4">What we do</h4>
+                <ul class="flex flex-col gap-2.5">
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Asset integrity</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Mechanical solutions</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Survey & robotics</a></li>
+                </ul>
+            </div>
+            <div class="lg:col-span-2">
+                <h4 class="text-logoBlue font-bold text-[15px] mb-4">Markets</h4>
+                <ul class="flex flex-col gap-2.5">
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Renewables</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Oil & gas</a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Infrastructure & industrial</a></li>
+                </ul>
+            </div>
+            <div class="lg:col-span-1">
+                <h4 class="text-logoBlue font-bold text-[15px] mb-4">Equipment</h4>
+                <ul class="flex flex-col gap-2.5">
+                    <li><a href="#" class="text-slate-300 hover:text-white text-[14px] transition-colors">Explore all</a></li>
+                </ul>
+            </div>
+            <div class="lg:col-span-2 flex justify-start lg:justify-end">
+                <a href="#" class="inline-block border-2 border-white text-white rounded-md px-6 py-2.5 font-bold text-[14px] hover:bg-white hover:text-logoNavy transition-colors h-fit shadow-lg">Client portal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- back to top -->
+    <button id="backToTopBtn" class="fixed bottom-6 right-6 bg-logoBlue text-white p-3 rounded-md shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-logoBlue/90 hover:-translate-y-1 z-50">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ---- same script logic as homepage ----
+            const navbar = document.getElementById('navbar');
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            const htmlElement = document.documentElement;
+
+            // desktop dropdown
+            const desktopDropdownGroups = document.querySelectorAll('#desktopNav .group');
+            let dropdownCloseTimer;
+            const closeDesktopDropdowns = () => { desktopDropdownGroups.forEach((g) => g.classList.remove('dropdown-open')); };
+            desktopDropdownGroups.forEach((group) => {
+                const dropdown = group.querySelector('.mega-dropdown');
+                if (!dropdown) return;
+                const openDropdown = () => { clearTimeout(dropdownCloseTimer);
+                    closeDesktopDropdowns();
+                    group.classList.add('dropdown-open'); };
+                const scheduleClose = () => { clearTimeout(dropdownCloseTimer);
+                    dropdownCloseTimer = setTimeout(() => { group.classList.remove('dropdown-open'); }, 220); };
+                group.addEventListener('mouseenter', openDropdown);
+                group.addEventListener('mouseleave', scheduleClose);
+                dropdown.addEventListener('mouseenter', openDropdown);
+                dropdown.addEventListener('mouseleave', scheduleClose);
+                dropdown.querySelectorAll('a').forEach((link) => { link.addEventListener('click', closeDesktopDropdowns); });
+            });
+
+            // scroll header
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+                if (window.scrollY > 400) { backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible'); } else { backToTopBtn.classList.add('opacity-0',
+                        'invisible');
+                    backToTopBtn.classList.remove('opacity-100', 'visible'); }
+            });
+            backToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+            // mobile nav
+            const mobileBtn = document.getElementById('mobileBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const bars = mobileBtn.querySelectorAll('.mobile-bar');
+            const sectionToggles = document.querySelectorAll('.mobile-section-toggle');
+            const closeMobileSections = () => {
+                sectionToggles.forEach((button) => {
+                    const target = document.getElementById(button.getAttribute('data-target'));
+                    const icon = button.querySelector('.mobile-section-icon');
+                    target?.classList.add('hidden');
+                    icon?.classList.remove('rotate-180');
+                });
+            };
+            mobileBtn.addEventListener('click', () => {
+                const isOpen = mobileNav.classList.contains('translate-y-0');
+                if (!isOpen) { mobileNav.classList.remove('-translate-y-full');
+                    mobileNav.classList.add('translate-y-0');
+                    bars[0].classList.add('translate-y-2', 'rotate-45');
+                    bars[1].classList.add('opacity-0');
+                    bars[2].classList.add('-translate-y-2.5', '-rotate-45'); } else { mobileNav.classList.add(
+                        '-translate-y-full');
+                    mobileNav.classList.remove('translate-y-0');
+                    bars[0].classList.remove('translate-y-2', 'rotate-45');
+                    bars[1].classList.remove('opacity-0');
+                    bars[2].classList.remove('-translate-y-2.5', '-rotate-45');
+                    closeMobileSections(); }
+            });
+            sectionToggles.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const target = document.getElementById(button.getAttribute('data-target'));
+                    const icon = button.querySelector('.mobile-section-icon');
+                    const isOpen = !target.classList.contains('hidden');
+                    closeMobileSections();
+                    if (isOpen) return;
+                    target.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                });
+            });
+            mobileNav.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('-translate-y-full');
+                    mobileNav.classList.remove('translate-y-0');
+                    bars[0].classList.remove('translate-y-2', 'rotate-45');
+                    bars[1].classList.remove('opacity-0');
+                    bars[2].classList.remove('-translate-y-2.5', '-rotate-45');
+                    closeMobileSections();
+                });
+            });
+
+            // dark mode
+            const themeToggle = document.getElementById('themeToggle');
+            const themeToggleMobile = document.getElementById('themeToggleMobile');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            const sunIconMobile = document.getElementById('sunIconMobile');
+            const moonIconMobile = document.getElementById('moonIconMobile');
+
+            function updateThemeUi(isDark) {
+                if (isDark) { htmlElement.classList.add('dark');
+                    htmlElement.classList.remove('light');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                    sunIconMobile.classList.remove('hidden');
+                    moonIconMobile.classList.add('hidden'); } else { htmlElement.classList.remove('dark');
+                    htmlElement.classList.add('light');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                    sunIconMobile.classList.add('hidden');
+                    moonIconMobile.classList.remove('hidden'); }
+            }
+            let isDarkMode = localStorage.getItem('theme') === 'dark' ||
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            updateThemeUi(isDarkMode);
+            const handleThemeSwitch = () => {
+                isDarkMode = !htmlElement.classList.contains('dark');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+                updateThemeUi(isDarkMode);
+            };
+            themeToggle.addEventListener('click', handleThemeSwitch);
+            themeToggleMobile.addEventListener('click', handleThemeSwitch);
+
+            // reveal
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target); } });
+            }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
+    </script>
+</body>
+</html>
