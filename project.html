@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects & Case Studies | Enhanced Marine Limited</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            marine: {
+              deepest: "#051F20",
+              deep: "#0B2B26",
+              teal: "#163832",
+              mid: "#235347",
+              sage: "#8EB69B",
+              mint: "#DAF1DE"
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --deepest-teal: #051F20;
+      --deep-teal: #0B2B26;
+      --teal: #163832;
+      --mid-teal: #235347;
+      --sage: #8EB69B;
+      --mint: #DAF1DE;
+      --white: #FFFFFF;
+      --off-white: #F8FAFC;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--deepest-teal);
+      color: var(--mint);
+    }
+    a {
+      text-decoration: none;
+    }
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      transition: background .35s ease, box-shadow .35s ease;
+    }
+    .site-header.scrolled {
+      background: rgba(5, 31, 32, .96);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+    }
+    .topbar {
+      border-bottom: 1px solid rgba(142, 182, 155, .14);
+      background: rgba(5, 31, 32, .45);
+    }
+    .topbar-inner {
+      max-width: 1280px;
+      margin: auto;
+      padding: 7px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+      font-size: 10px;
+    }
+    .topbar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(218, 241, 222, .72);
+      transition: color .25s ease;
+    }
+    .topbar-link:hover {
+      color: var(--sage);
+    }
+    .topbar-link i {
+      color: var(--sage);
+    }
+    .header-main {
+      max-width: 1280px;
+      margin: auto;
+      padding: 4px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      transition: transform .3s ease;
+    }
+    .brand-logo:hover {
+      transform: scale(1.04);
+    }
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-left: auto;
+      margin-right: 28px;
+    }
+    .nav-link {
+      position: relative;
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 600;
+      transition: color .25s ease;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 1px;
+      background: var(--sage);
+      transition: width .3s ease;
+    }
+    .nav-link:hover {
+      color: var(--sage);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-link.active {
+      color: var(--sage);
+    }
+    .nav-link.active::after {
+      width: 100%;
+    }
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 17px;
+      background: var(--mid-teal);
+      color: var(--mint);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      transition: background .3s ease, transform .3s ease;
+    }
+    .header-cta:hover {
+      background: var(--sage);
+      color: var(--deepest-teal);
+      transform: translateY(-2px);
+    }
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      border: 1px solid rgba(142, 182, 155, .2);
+      background: transparent;
+      cursor: pointer;
+    }
+    .burger-line {
+      width: 19px;
+      height: 1px;
+      background: var(--mint);
+      transition: transform .3s ease, opacity .3s ease;
+    }
+    .menu-btn.burger-open .line-1 {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .menu-btn.burger-open .line-2 {
+      opacity: 0;
+    }
+    .menu-btn.burger-open .line-3 {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    .mobile-menu {
+      background: rgba(11, 43, 38, .98);
+      border-top: 1px solid rgba(142, 182, 155, .12);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease;
+    }
+    .mobile-menu.open {
+      max-height: 600px;
+    }
+    .mobile-nav {
+      padding: 10px 24px 20px;
+    }
+    .mobile-link {
+      display: block;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(142, 182, 155, .09);
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .mobile-link:hover {
+      color: var(--sage);
+    }
+    .mobile-contact {
+      display: inline-flex;
+      margin-top: 18px;
+      padding: 12px 18px;
+      background: var(--sage);
+      color: var(--deepest-teal);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .projects-hero {
+      position: relative;
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: radial-gradient(circle at 78% 40%, rgba(142, 182, 155, .13), transparent 27%), linear-gradient(125deg, #051F20, #0B2B26 58%, #163832);
+    }
+    .projects-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(218, 241, 222, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(218, 241, 222, .035) 1px, transparent 1px);
+      background-size: 70px 70px;
+    }
+    .hero-depth {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      width: 520px;
+      height: 520px;
+      transform: translateY(-50%);
+      border: 1px solid rgba(142, 182, 155, .13);
+      border-radius: 50%;
+      animation: rotateDepth 35s linear infinite;
+    }
+    .hero-depth::before {
+      content: "";
+      position: absolute;
+      inset: 55px;
+      border: 1px dashed rgba(142, 182, 155, .15);
+      border-radius: 50%;
+    }
+    .hero-depth::after {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      top: 50%;
+      left: -3px;
+      background: var(--sage);
+      border-radius: 50%;
+      box-shadow: 0 0 25px rgba(142, 182, 155, .8);
+    }
+    @keyframes rotateDepth {
+      from {
+        transform: translateY(-50%) rotate(0deg);
+      }
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      margin: auto;
+      padding: 170px 24px 100px;
+    }
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      color: var(--sage);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .hero-kicker::before {
+      content: "";
+      width: 35px;
+      height: 1px;
+      background: var(--sage);
+    }
+    .hero-title {
+      max-width: 950px;
+      margin: 0 0 25px;
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: .94;
+      font-weight: 800;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+    }
+    .hero-title span {
+      color: var(--sage);
+    }
+    .hero-description {
+      max-width: 650px;
+      color: rgba(218, 241, 222, .63);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+    .hero-scroll {
+      position: absolute;
+      left: 24px;
+      bottom: 35px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(218, 241, 222, .38);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .hero-scroll span {
+      width: 35px;
+      height: 1px;
+      background: rgba(142, 182, 155, .35);
+    }
+    .intro-section,
+    .projects-section,
+    .case-study,
+    .process-section,
+    .final-cta {
+      position: relative;
+    }
+    .intro-section::before,
+    .projects-section::before,
+    .case-study::before,
+    .process-section::before,
+    .final-cta::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 8px;
+      background: var(--mint);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .intro-section::after,
+    .projects-section::after,
+    .case-study::after,
+    .process-section::after,
+    .final-cta::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 8px;
+      background: var(--mint);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .intro-section {
+      padding: 100px 24px 60px;
+      background: var(--mint);
+      color: var(--deepest-teal);
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr .75fr;
+      gap: 80px;
+      align-items: end;
+    }
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      color: var(--mid-teal);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .section-kicker::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--sage);
+    }
+    .section-title {
+      margin: 0 0 20px;
+      max-width: 850px;
+      font-size: clamp(37px, 5vw, 61px);
+      line-height: 1;
+      letter-spacing: -2.5px;
+      font-weight: 700;
+    }
+    .section-title span {
+      color: var(--mid-teal);
+    }
+    .intro-description {
+      color: rgba(35, 83, 71, .58);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+    .project-note {
+      padding: 26px;
+      border-left: 2px solid var(--sage);
+      background: rgba(255, 255, 255, .55);
+    }
+    .project-note strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--mid-teal);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .project-note p {
+      margin: 0;
+      color: rgba(35, 83, 71, .53);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .projects-section {
+      padding: 45px 24px 110px;
+      background: var(--mint);
+      color: var(--deepest-teal);
+    }
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 25px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(35, 83, 71, .1);
+    }
+    .filter-label {
+      color: rgba(35, 83, 71, .45);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .filter-btn {
+      padding: 8px 13px;
+      border: 1px solid rgba(35, 83, 71, .13);
+      background: transparent;
+      color: rgba(35, 83, 71, .58);
+      font-family: inherit;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      cursor: pointer;
+      transition: border-color .25s ease, color .25s ease, background .25s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--mid-teal);
+      color: var(--mid-teal);
+    }
+    .filter-btn.active {
+      background: var(--mid-teal);
+      border-color: var(--mid-teal);
+      color: var(--mint);
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+      background: var(--deep-teal);
+      isolation: isolate;
+      transition: transform .3s ease;
+    }
+    .project-card.large {
+      min-height: 600px;
+    }
+    .project-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .75;
+      transition: transform .7s ease, opacity .5s ease;
+      z-index: -3;
+    }
+    .project-card:hover .project-image {
+      transform: scale(1.06);
+      opacity: .9;
+    }
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(to top, rgba(5, 31, 32, .97) 0%, rgba(5, 31, 32, .75) 42%, rgba(5, 31, 32, .05) 100%);
+    }
+    .project-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(135deg, rgba(35, 83, 71, .3), transparent 50%);
+    }
+    .project-content {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 27px;
+    }
+    .project-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 14px;
+    }
+    .project-category {
+      color: var(--sage);
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .project-year {
+      color: rgba(218, 241, 222, .4);
+      font-size: 8px;
+      letter-spacing: 1px;
+    }
+    .project-title {
+      margin: 0 0 10px;
+      color: var(--mint);
+      font-size: clamp(25px, 3vw, 36px);
+      line-height: 1;
+      letter-spacing: -1.5px;
+    }
+    .project-description {
+      max-width: 570px;
+      margin: 0 0 20px;
+      color: rgba(218, 241, 222, .58);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .project-tag {
+      padding: 5px 8px;
+      border: 1px solid rgba(142, 182, 155, .2);
+      color: rgba(218, 241, 222, .58);
+      font-size: 7px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+    .project-arrow {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(142, 182, 155, .25);
+      color: var(--sage);
+      transition: background .3s ease, color .3s ease, transform .3s ease;
+    }
+    .project-card:hover .project-arrow {
+      background: var(--sage);
+      color: var(--deepest-teal);
+      transform: translate(3px, -3px);
+    }
+    .project-card.hide {
+      display: none;
+    }
+    .case-study {
+      padding: 110px 24px;
+      background: var(--off-white);
+      color: var(--deepest-teal);
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .case-image {
+      position: relative;
+      min-height: 500px;
+      overflow: hidden;
+      background: var(--deep-teal);
+    }
+    .case-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      object-fit: cover;
+      opacity: .78;
+    }
+    .case-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+      background: linear-gradient(transparent 45%, rgba(5, 31, 32, .9));
+    }
+    .case-overlay-label {
+      color: var(--sage);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .case-content .section-kicker {
+      margin-bottom: 14px;
+    }
+    .case-title {
+      margin: 0 0 18px;
+      font-size: clamp(35px, 4vw, 53px);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+    .case-content>p {
+      margin: 0 0 28px;
+      color: rgba(35, 83, 71, .58);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+    .case-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .case-detail {
+      padding: 18px;
+      border: 1px solid rgba(35, 83, 71, .1);
+      background: var(--white);
+    }
+    .case-detail span {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--sage);
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .case-detail strong {
+      color: var(--mid-teal);
+      font-size: 11px;
+    }
+    .case-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      background: var(--mid-teal);
+      color: var(--mint);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background .3s ease, transform .3s ease;
+    }
+    .case-button:hover {
+      background: var(--deep-teal);
+      transform: translateX(3px);
+    }
+    .process-section {
+      padding: 105px 24px;
+      background: var(--deep-teal);
+    }
+    .process-header {
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+    .process-header .section-kicker {
+      color: var(--sage);
+    }
+    .process-header .section-kicker::before {
+      background: var(--sage);
+    }
+    .process-title {
+      margin: 0 0 18px;
+      color: var(--mint);
+      font-size: clamp(38px, 5vw, 60px);
+      line-height: 1;
+      letter-spacing: -2.5px;
+    }
+    .process-title span {
+      color: var(--sage);
+    }
+    .process-description {
+      color: rgba(218, 241, 222, .48);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .process-card {
+      padding: 28px 22px;
+      border: 1px solid rgba(142, 182, 155, .11);
+      background: rgba(5, 31, 32, .55);
+      transition: transform .3s ease, border-color .3s ease;
+    }
+    .process-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(142, 182, 155, .3);
+    }
+    .process-number {
+      display: block;
+      margin-bottom: 35px;
+      color: rgba(142, 182, 155, .4);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .process-card i {
+      display: block;
+      margin-bottom: 20px;
+      color: var(--sage);
+      font-size: 18px;
+    }
+    .process-card h3 {
+      margin: 0 0 9px;
+      color: var(--mint);
+      font-size: 14px;
+    }
+    .process-card p {
+      margin: 0;
+      color: rgba(218, 241, 222, .4);
+      font-size: 9px;
+      line-height: 1.8;
+    }
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      padding: 105px 24px;
+      background: var(--mint);
+      color: var(--deepest-teal);
+    }
+    .final-cta::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      width: 600px;
+      height: 600px;
+      transform: translateY(-50%);
+      background-image: url("img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: .045;
+      pointer-events: none;
+    }
+    .cta-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-label {
+      margin-bottom: 15px;
+      color: var(--mid-teal);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .cta-title {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: .95;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+    }
+    .cta-title span {
+      color: var(--mid-teal);
+    }
+    .cta-text {
+      max-width: 620px;
+      margin: 18px 0 0;
+      color: rgba(35, 83, 71, .55);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      padding: 16px 22px;
+      background: var(--deep-teal);
+      color: var(--mint);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background .3s ease, transform .3s ease;
+    }
+    .cta-button:hover {
+      background: var(--mid-teal);
+      transform: translateX(4px);
+    }
+    .footer {
+      background: #031516;
+      padding: 65px 24px 25px;
+      border-top: 1px solid rgba(142, 182, 155, .1);
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr 1fr;
+      gap: 45px;
+      padding-bottom: 45px;
+    }
+    .footer-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      margin-bottom: 17px;
+    }
+    .footer-brand {
+      margin-bottom: 10px;
+      color: var(--mint);
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .footer-description {
+      max-width: 330px;
+      color: rgba(218, 241, 222, .45);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+    .footer-heading {
+      margin-bottom: 17px;
+      color: var(--sage);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      color: rgba(218, 241, 222, .6);
+      font-size: 11px;
+      transition: color .25s ease, transform .25s ease;
+    }
+    .footer-links a:hover {
+      color: var(--sage);
+      transform: translateX(3px);
+    }
+    .footer-contact {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-bottom: 11px;
+      color: rgba(218, 241, 222, .6);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .footer-contact i {
+      width: 15px;
+      color: var(--sage);
+      margin-top: 2px;
+    }
+    .footer-contact:hover {
+      color: var(--mint);
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(142, 182, 155, .08);
+      color: rgba(218, 241, 222, .3);
+      font-size: 9px;
+    }
+    .socials {
+      display: flex;
+      gap: 7px;
+    }
+    .social {
+      width: 31px;
+      height: 31px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(142, 182, 155, .15);
+      color: var(--sage);
+      transition: background .25s ease, color .25s ease;
+    }
+    .social:hover {
+      background: var(--sage);
+      color: var(--deepest-teal);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 1000px) {
+      .desktop-nav,
+      .header-cta {
+        display: none;
+      }
+      .menu-btn {
+        display: flex;
+      }
+      .intro-grid,
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+      .intro-grid {
+        gap: 35px;
+      }
+      .case-grid {
+        gap: 50px;
+      }
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cta-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 700px) {
+      .topbar {
+        display: none;
+      }
+      .header-main {
+        padding: 7px 18px;
+      }
+      .brand-logo {
+        width: 62px;
+        height: 62px;
+      }
+      .hero-inner {
+        padding: 145px 20px 85px;
+      }
+      .hero-title {
+        font-size: 48px;
+        letter-spacing: -3px;
+      }
+      .hero-depth {
+        right: -220px;
+        width: 430px;
+        height: 430px;
+        opacity: .4;
+      }
+      .hero-scroll {
+        left: 20px;
+      }
+      .intro-section,
+      .projects-section,
+      .case-study,
+      .process-section,
+      .final-cta {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .intro-section {
+        padding-top: 75px;
+      }
+      .projects-section {
+        padding-bottom: 75px;
+      }
+      .filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .filters {
+        width: 100%;
+      }
+      .filter-btn {
+        flex: 0 0 auto;
+      }
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-card,
+      .project-card.large {
+        min-height: 470px;
+      }
+      .case-image,
+      .case-image img {
+        min-height: 380px;
+      }
+      .case-details {
+        grid-template-columns: 1fr;
+      }
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      .final-cta {
+        padding-top: 75px;
+        padding-bottom: 75px;
+      }
+      .final-cta::after {
+        width: 400px;
+        height: 400px;
+        right: -180px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    .hero-title,
+    .section-title,
+    .case-title,
+    .process-title,
+    .cta-title {
+      font-size: clamp(1.3rem, 4vw, 2.2rem);
+      line-height: 0.92;
+      letter-spacing: -1px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    @media (min-width: 768px) {
+      .hero-title,
+      .section-title,
+      .case-title,
+      .process-title,
+      .cta-title {
+        font-size: clamp(1.5rem, 2.8vw, 3rem);
+      }
+    }
+    .hero-description,
+    .intro-description,
+    .project-description,
+    .case-content>p,
+    .process-description,
+    .cta-text,
+    .footer-description {
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .project-title,
+    .case-detail strong,
+    .process-card h3 {
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+    .hero-kicker,
+    .section-kicker,
+    .project-category,
+    .project-year,
+    .project-tag,
+    .case-overlay-label,
+    .case-detail span,
+    .process-number,
+    .cta-label,
+    .footer-heading {
+      font-size: 0.75rem;
+    }
+    @media (max-width: 650px) {
+      .hero-title,
+      .section-title,
+      .case-title,
+      .process-title,
+      .cta-title {
+        font-size: 1.3rem;
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="siteHeader" class="site-header">
+    <div class="topbar">
+      <div class="topbar-inner">
+        <a href="mailto:YOUR_EMAIL@example.com" class="topbar-link"><i class="fas fa-envelope"></i>YOUR_EMAIL@example.com</a>
+        <a href="tel:+234XXXXXXXXXX" class="topbar-link"><i class="fas fa-phone"></i>+234 XXX XXX XXXX</a>
+      </div>
+    </div>
+    <div class="header-main">
+      <a href="index.html"><img src="img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png" alt="Enhanced Marine Limited" class="brand-logo" /></a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="technologies.html" class="nav-link">Technology</a>
+        <a href="project.html" class="nav-link active">Projects</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <a href="contact.html" class="header-cta">Contact Us <i class="fas fa-arrow-right"></i></a>
+      <button id="menuBtn" class="menu-btn" aria-label="Open navigation" aria-expanded="false">
+        <span class="burger-line line-1"></span>
+        <span class="burger-line line-2"></span>
+        <span class="burger-line line-3"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="about.html" class="mobile-link">About</a>
+        <a href="services.html" class="mobile-link">Services</a>
+        <a href="technologies.html" class="mobile-link">Technology</a>
+        <a href="project.html" class="mobile-link">Projects</a>
+        <a href="faq.html" class="mobile-link">FAQ</a>
+        <a href="contact.html" class="mobile-contact">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+  <section class="projects-hero">
+    <div class="hero-depth"></div>
+    <div class="hero-inner">
+      <div class="hero-kicker reveal">Projects & Case Studies</div>
+      <h1 class="hero-title reveal">Work that <span>goes deeper.</span></h1>
+      <p class="hero-description reveal">Explore the type of marine inspection, ROV and subsea work we undertake to provide clients with better visibility into critical underwater assets.</p>
+      <div class="hero-scroll"><span></span>Explore Our Work</div>
+    </div>
+  </section>
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="reveal">
+          <div class="section-kicker">Our Project Experience</div>
+          <h2 class="section-title">From underwater inspection to <span>actionable insight.</span></h2>
+          <p class="intro-description">Every marine project presents its own operating conditions, inspection objectives and technical requirements. Our approach is to understand the scope, select the appropriate inspection method and deliver information that helps clients understand the condition of their assets.</p>
+        </div>
+        <div class="project-note reveal">
+          <strong>Inspection Philosophy</strong>
+          <p>We focus on the information that matters: identifying conditions, documenting findings and presenting inspection results clearly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <div class="filter-bar reveal">
+        <div class="filter-label">Browse Project Types</div>
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="rov">ROV</button>
+          <button class="filter-btn" data-filter="inspection">Marine Inspection</button>
+          <button class="filter-btn" data-filter="mooring">Mooring</button>
+          <button class="filter-btn" data-filter="risers">Risers</button>
+        </div>
+      </div>
+      <div class="project-grid">
+        <article class="project-card large reveal" data-category="rov">
+          <img src="img/project-rov.jpg" alt="ROV subsea inspection operation" class="project-image" />
+          <div class="project-content">
+            <div class="project-meta">
+              <span class="project-category">ROV Operations</span>
+              <span class="project-year">CASE 01</span>
+            </div>
+            <h3 class="project-title">Subsea Asset Visual Inspection</h3>
+            <p class="project-description">Remote inspection support for underwater assets where direct access was impractical. The operation focused on visual documentation and condition assessment.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">ROV</span>
+                <span class="project-tag">Visual Inspection</span>
+                <span class="project-tag">Subsea</span>
+              </div>
+              <a href="#featured-case" class="project-arrow" aria-label="View case study"><i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card reveal" data-category="mooring">
+          <img src="img/project-mooring.jpg" alt="Mooring line inspection" class="project-image" />
+          <div class="project-content">
+            <div class="project-meta">
+              <span class="project-category">Mooring Inspection</span>
+              <span class="project-year">CASE 02</span>
+            </div>
+            <h3 class="project-title">Mooring Line Assessment</h3>
+            <p class="project-description">Inspection of subsea mooring components to document visible condition and support asset integrity decisions.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">Mooring</span>
+                <span class="project-tag">Inspection</span>
+              </div>
+              <a href="#" class="project-arrow" aria-label="View case study"><i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card reveal" data-category="risers">
+          <img src="img/project-riser.jpg" alt="Subsea riser inspection" class="project-image" />
+          <div class="project-content">
+            <div class="project-meta">
+              <span class="project-category">Riser Inspection</span>
+              <span class="project-year">CASE 03</span>
+            </div>
+            <h3 class="project-title">Riser Condition Inspection</h3>
+            <p class="project-description">Specialist subsea inspection focused on documenting the visible condition of riser components and associated underwater structures.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">Risers</span>
+                <span class="project-tag">Subsea</span>
+                <span class="project-tag">ROV</span>
+              </div>
+              <a href="#" class="project-arrow" aria-label="View case study"><i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card large reveal" data-category="inspection">
+          <img src="img/project-marine.jpg" alt="Marine inspection operation" class="project-image" />
+          <div class="project-content">
+            <div class="project-meta">
+              <span class="project-category">Marine Inspection</span>
+              <span class="project-year">CASE 04</span>
+            </div>
+            <h3 class="project-title">Underwater Asset Condition Survey</h3>
+            <p class="project-description">A structured marine inspection designed to capture underwater observations, document asset condition and provide information for subsequent operational decisions.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">Marine Inspection</span>
+                <span class="project-tag">Condition Survey</span>
+              </div>
+              <a href="#featured-case" class="project-arrow" aria-label="View case study"><i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section id="featured-case" class="case-study">
+    <div class="container">
+      <div class="case-grid">
+        <div class="case-image reveal">
+          <img src="img/featured-project.jpg" alt="Featured subsea inspection project" />
+          <div class="case-overlay">
+            <div class="case-overlay-label">Featured Inspection // Subsea</div>
+          </div>
+        </div>
+        <div class="case-content reveal">
+          <div class="section-kicker">Featured Case Study</div>
+          <h2 class="case-title">Seeing what lies beneath.</h2>
+          <p>A specialist subsea inspection project demonstrates how remote inspection technology can provide access to areas that are difficult or unsafe to inspect directly.</p>
+          <div class="case-details">
+            <div class="case-detail"><span>Scope</span><strong>Subsea Asset Inspection</strong></div>
+            <div class="case-detail"><span>Method</span><strong>ROV-Based Inspection</strong></div>
+            <div class="case-detail"><span>Focus</span><strong>Visual Condition Assessment</strong></div>
+            <div class="case-detail"><span>Output</span><strong>Inspection Documentation</strong></div>
+          </div>
+          <a href="contact.html" class="case-button">Discuss A Similar Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="process-section">
+    <div class="container">
+      <div class="process-header reveal">
+        <div class="section-kicker">How We Approach Projects</div>
+        <h2 class="process-title">Structured from <span>scope to insight.</span></h2>
+        <p class="process-description">A disciplined inspection process helps ensure that the right information is captured and communicated clearly.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card reveal">
+          <span class="process-number">01</span>
+          <i class="fas fa-clipboard-list"></i>
+          <h3>Understand</h3>
+          <p>We establish the inspection objective, asset requirements and operational conditions.</p>
+        </div>
+        <div class="process-card reveal">
+          <span class="process-number">02</span>
+          <i class="fas fa-sitemap"></i>
+          <h3>Plan</h3>
+          <p>The appropriate inspection approach, equipment and operational requirements are considered.</p>
+        </div>
+        <div class="process-card reveal">
+          <span class="process-number">03</span>
+          <i class="fas fa-water"></i>
+          <h3>Inspect</h3>
+          <p>Inspection activities are carried out with focus on collecting relevant underwater information.</p>
+        </div>
+        <div class="process-card reveal">
+          <span class="process-number">04</span>
+          <i class="fas fa-file-lines"></i>
+          <h3>Report</h3>
+          <p>Findings are documented and communicated to support informed asset decisions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="final-cta">
+    <div class="cta-container">
+      <div class="reveal">
+        <div class="cta-label">Have A Marine Project?</div>
+        <h2 class="cta-title">Your next <span>inspection</span> starts here.</h2>
+        <p class="cta-text">Tell us what you need inspected, where the operation will take place and what information you need. Our team can discuss the appropriate approach for your project.</p>
+      </div>
+      <a href="contact.html" class="cta-button reveal">Start A Conversation <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div>
+          <img src="img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png" alt="Enhanced Marine Limited" class="footer-logo" />
+          <div class="footer-brand">Enhanced Marine Limited</div>
+          <p class="footer-description">Specialist marine inspection, ROV operations, mooring line and riser inspection services supporting safer and more informed offshore operations.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="technologies.html">Technology</a>
+            <a href="project.html">Projects</a>
+            <a href="faq.html">FAQ</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="services.html">Marine Inspections</a>
+            <a href="services.html">ROV Operations</a>
+            <a href="services.html">Mooring Line Inspection</a>
+            <a href="services.html">Riser Inspection</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <a href="mailto:YOUR_EMAIL@example.com" class="footer-contact"><i class="fas fa-envelope"></i><span>YOUR_EMAIL@example.com</span></a>
+          <a href="tel:+234XXXXXXXXXX" class="footer-contact"><i class="fas fa-phone"></i><span>+234 XXX XXX XXXX</span></a>
+          <a href="contact.html" class="footer-contact"><i class="fas fa-location-dot"></i><span>Company Address,<br>Nigeria</span></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; <span id="currentYear"></span> Enhanced Marine Limited. All rights reserved.</div>
+        <div class="socials">
+          <a href="#" class="social" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      menuBtn.classList.toggle("burger-open", isOpen);
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+    document.querySelectorAll(".mobile-link, .mobile-contact").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        menuBtn.classList.remove("burger-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+    const siteHeader = document.getElementById("siteHeader");
+    window.addEventListener("scroll", () => {
+      siteHeader.classList.toggle("scrolled", window.scrollY > 30);
+    });
+    const revealElements = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        const filter = button.dataset.filter;
+        projectCards.forEach(card => {
+          const category = card.dataset.category;
+          if (filter === "all" || category === filter) {
+            card.classList.remove("hide");
+          } else {
+            card.classList.add("hide");
+          }
+        });
+      });
+    });
+    const heroDepth = document.querySelector(".hero-depth");
+    window.addEventListener("mousemove", event => {
+      if (window.innerWidth <= 1000) return;
+      const x = (event.clientX / window.innerWidth - .5) * 14;
+      const y = (event.clientY / window.innerHeight - .5) * 14;
+      heroDepth.style.marginLeft = `${x}px`;
+      heroDepth.style.marginTop = `${y}px`;
+    });
+    document.querySelectorAll(".project-card").forEach(card => {
+      card.addEventListener("mousemove", event => {
+        if (window.innerWidth <= 700) return;
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const rotateX = (y / rect.height - .5) * -2;
+        const rotateY = (x / rect.width - .5) * 2;
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  </script>
+</body>
+</html>

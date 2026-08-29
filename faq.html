@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Enhanced Marine Limited</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            marine: {
+              deepest: "#051F20",
+              deep: "#0B2B26",
+              teal: "#163832",
+              mid: "#235347",
+              sage: "#8EB69B",
+              mint: "#DAF1DE"
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --deepest-teal: #051F20;
+      --deep-teal: #0B2B26;
+      --teal: #163832;
+      --mid-teal: #235347;
+      --sage: #8EB69B;
+      --mint: #DAF1DE;
+      --white: #FFFFFF;
+      --off-white: #F8FAFC;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      background: var(--deepest-teal);
+      color: var(--mint);
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+    }
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      transition: background .35s ease, box-shadow .35s ease;
+    }
+    .site-header.scrolled {
+      background: rgba(5, 31, 32, .96);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, .18);
+    }
+    .topbar {
+      border-bottom: 1px solid rgba(142, 182, 155, .14);
+      background: rgba(5, 31, 32, .45);
+    }
+    .topbar-inner {
+      max-width: 1280px;
+      margin: auto;
+      padding: 7px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+      font-size: 10px;
+    }
+    .topbar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(218, 241, 222, .7);
+      transition: color .25s ease;
+    }
+    .topbar-link:hover {
+      color: var(--sage);
+    }
+    .topbar-link i {
+      color: var(--sage);
+    }
+    .header-main {
+      max-width: 1280px;
+      margin: auto;
+      padding: 4px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      transition: transform .3s ease;
+    }
+    .brand-logo:hover {
+      transform: scale(1.04);
+    }
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-left: auto;
+      margin-right: 28px;
+    }
+    .nav-link {
+      position: relative;
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 600;
+      transition: color .25s ease;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 1px;
+      background: var(--sage);
+      transition: width .3s ease;
+    }
+    .nav-link:hover {
+      color: var(--sage);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-link.active {
+      color: var(--sage);
+    }
+    .nav-link.active::after {
+      width: 100%;
+    }
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 17px;
+      background: var(--mid-teal);
+      color: var(--mint);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      transition: background .3s ease, transform .3s ease;
+    }
+    .header-cta:hover {
+      background: var(--sage);
+      color: var(--deepest-teal);
+      transform: translateY(-2px);
+    }
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      border: 1px solid rgba(142, 182, 155, .2);
+      background: transparent;
+      cursor: pointer;
+    }
+    .burger-line {
+      width: 19px;
+      height: 1px;
+      background: var(--mint);
+      transition: transform .3s ease, opacity .3s ease;
+    }
+    .menu-btn.burger-open .line-1 {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .menu-btn.burger-open .line-2 {
+      opacity: 0;
+    }
+    .menu-btn.burger-open .line-3 {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    .mobile-menu {
+      background: rgba(11, 43, 38, .98);
+      border-top: 1px solid rgba(142, 182, 155, .12);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .45s ease;
+    }
+    .mobile-menu.open {
+      max-height: 600px;
+    }
+    .mobile-nav {
+      padding: 10px 24px 20px;
+    }
+    .mobile-link {
+      display: block;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(142, 182, 155, .09);
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .mobile-link:hover {
+      color: var(--sage);
+    }
+    .mobile-contact {
+      display: inline-flex;
+      margin-top: 18px;
+      padding: 12px 18px;
+      background: var(--sage);
+      color: var(--deepest-teal);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .faq-hero {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: radial-gradient(circle at 75% 40%, rgba(142, 182, 155, .12), transparent 30%), linear-gradient(125deg, #051F20, #0B2B26 60%, #163832);
+    }
+    .faq-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(218, 241, 222, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(218, 241, 222, .035) 1px, transparent 1px);
+      background-size: 70px 70px;
+    }
+    .faq-section > * {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-ring {
+      position: absolute;
+      right: 9%;
+      top: 50%;
+      width: 420px;
+      height: 420px;
+      transform: translateY(-50%);
+      border: 1px solid rgba(142, 182, 155, .13);
+      border-radius: 50%;
+      animation: rotateRing 20s linear infinite;
+    }
+    .hero-ring::before {
+      content: "";
+      position: absolute;
+      inset: 60px;
+      border: 1px solid rgba(142, 182, 155, .09);
+      border-radius: 50%;
+    }
+    .hero-ring::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      transform: translate(-50%, -50%);
+      background: var(--sage);
+      border-radius: 50%;
+      box-shadow: 0 0 35px rgba(142, 182, 155, .7);
+    }
+    @keyframes rotateRing {
+      from {
+        transform: translateY(-50%) rotate(0deg);
+      }
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+    .hero-sweep {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 180px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--sage));
+      transform-origin: left center;
+      animation: sweep 4s linear infinite;
+    }
+    @keyframes sweep {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 160px 24px 90px;
+    }
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 22px;
+      color: var(--sage);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .hero-kicker::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--sage);
+    }
+    .hero-title {
+      max-width: 850px;
+      margin: 0 0 28px;
+      font-size: clamp(48px, 7vw, 90px);
+      line-height: .94;
+      letter-spacing: -4px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .hero-title span {
+      color: var(--sage);
+    }
+    .hero-description {
+      max-width: 650px;
+      color: rgba(218, 241, 222, .65);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+    .faq-section {
+      position: relative;
+      padding: 105px 24px;
+      background: var(--mint);
+      color: var(--deepest-teal);
+    }
+    .faq-section::before,
+    .faq-section::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--mint);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .faq-section::before {
+      top: -8px;
+    }
+    .faq-section::after {
+      bottom: -8px;
+    }
+    .faq-container {
+      max-width: 1050px;
+      margin: auto;
+    }
+    .faq-header {
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+    .faq-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--mid-teal);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+    .faq-label::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--sage);
+    }
+    .faq-title {
+      margin: 0 0 20px;
+      max-width: 850px;
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1;
+      letter-spacing: -2.5px;
+      font-weight: 700;
+    }
+    .faq-title span {
+      color: var(--mid-teal);
+    }
+    .faq-intro {
+      max-width: 720px;
+      margin: 0;
+      color: rgba(35, 83, 71, .65);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+    .faq-tools {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .faq-search {
+      position: relative;
+      flex: 1;
+    }
+    .faq-search i {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--mid-teal);
+      font-size: 12px;
+    }
+    .faq-search input {
+      width: 100%;
+      height: 50px;
+      padding: 0 18px 0 45px;
+      border: 1px solid rgba(35, 83, 71, .14);
+      background: rgba(255, 255, 255, .55);
+      color: var(--deepest-teal);
+      outline: none;
+      font-family: inherit;
+      font-size: 11px;
+      transition: border-color .25s ease, background .25s ease;
+    }
+    .faq-search input:focus {
+      border-color: var(--sage);
+      background: white;
+    }
+    .clear-search {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      border: 1px solid rgba(35, 83, 71, .14);
+      background: transparent;
+      color: var(--mid-teal);
+      cursor: pointer;
+    }
+    .clear-search.show {
+      display: flex;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq-item {
+      border: 1px solid rgba(35, 83, 71, .13);
+      background: rgba(255, 255, 255, .42);
+      transition: border-color .3s ease, background .3s ease, transform .3s ease;
+    }
+    .faq-item:hover {
+      border-color: rgba(35, 83, 71, .25);
+    }
+    .faq-item.open {
+      background: white;
+      border-color: rgba(142, 182, 155, .65);
+    }
+    .faq-question {
+      width: 100%;
+      min-height: 72px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      border: none;
+      background: transparent;
+      color: var(--deepest-teal);
+      text-align: left;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 27px;
+      height: 27px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(35, 83, 71, .18);
+      color: var(--mid-teal);
+      font-size: 17px;
+      font-weight: 400;
+      transition: transform .3s ease, background .3s ease, color .3s ease;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--mid-teal);
+      color: var(--mint);
+    }
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .4s ease;
+    }
+    .faq-item.open .faq-answer {
+      grid-template-rows: 1fr;
+    }
+    .faq-answer-inner {
+      overflow: hidden;
+    }
+    .faq-answer p {
+      margin: 0;
+      padding: 0 70px 25px 22px;
+      color: rgba(35, 83, 71, .62);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+    .no-results {
+      display: none;
+      padding: 50px 20px;
+      text-align: center;
+      border: 1px dashed rgba(35, 83, 71, .2);
+    }
+    .no-results.show {
+      display: block;
+    }
+    .no-results i {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--sage);
+      font-size: 25px;
+    }
+    .no-results strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+    .no-results span {
+      color: rgba(35, 83, 71, .55);
+      font-size: 10px;
+    }
+    .question-cta {
+      margin-top: 60px;
+      padding: 35px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      background: var(--deep-teal);
+      color: var(--mint);
+    }
+    .question-cta-label {
+      color: var(--sage);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 9px;
+    }
+    .question-cta h3 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing: -1px;
+    }
+    .question-cta p {
+      max-width: 550px;
+      margin: 8px 0 0;
+      color: rgba(218, 241, 222, .5);
+      font-size: 10px;
+      line-height: 1.7;
+    }
+    .question-cta-button {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      background: var(--sage);
+      color: var(--deepest-teal);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: transform .3s ease, background .3s ease;
+    }
+    .question-cta-button:hover {
+      background: var(--mint);
+      transform: translateX(4px);
+    }
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      padding: 105px 24px;
+      background: var(--deep-teal);
+      border-top: 1px solid rgba(142, 182, 155, .12);
+    }
+    .final-cta::before,
+    .final-cta::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--mint);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .final-cta::before {
+      top: -8px;
+    }
+    .final-cta::after {
+      bottom: -8px;
+    }
+    .final-cta-bg-logo {
+      position: absolute;
+      right: -50px;
+      top: 50%;
+      width: 580px;
+      height: 580px;
+      transform: translateY(-50%);
+      background-image: url("img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: .035;
+      pointer-events: none;
+    }
+    .final-cta-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(142, 182, 155, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(142, 182, 155, .025) 1px, transparent 1px);
+      background-size: 70px 70px;
+    }
+    .final-cta-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .final-cta-label {
+      color: var(--sage);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+    .final-cta-title {
+      max-width: 800px;
+      margin: 0;
+      color: var(--mint);
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: .95;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+    }
+    .final-cta-title span {
+      color: var(--sage);
+    }
+    .final-cta-text {
+      max-width: 620px;
+      margin: 20px 0 28px;
+      color: rgba(218, 241, 222, .55);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .final-cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .final-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 19px;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: transform .3s ease, background .3s ease;
+    }
+    .final-cta-btn.primary {
+      background: var(--mint);
+      color: var(--deepest-teal);
+    }
+    .final-cta-btn.secondary {
+      border: 1px solid rgba(142, 182, 155, .3);
+      color: var(--mint);
+    }
+    .final-cta-btn:hover {
+      transform: translateY(-3px);
+    }
+    .final-cta-btn.primary:hover {
+      background: var(--sage);
+    }
+    .final-cta-btn.secondary:hover {
+      background: rgba(142, 182, 155, .1);
+    }
+    .final-cta-mark {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 65px auto 0;
+      padding-top: 15px;
+      border-top: 1px solid rgba(142, 182, 155, .1);
+      color: rgba(218, 241, 222, .28);
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .site-footer {
+      position: relative;
+      background: #031516;
+      padding: 65px 24px 25px;
+      border-top: 1px solid rgba(142, 182, 155, .1);
+      overflow: hidden;
+    }
+    .footer-watermark {
+      position: absolute;
+      right: -120px;
+      bottom: -180px;
+      width: 500px;
+      height: 500px;
+      background-image: url("img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: .018;
+      pointer-events: none;
+    }
+    .footer-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr 1fr;
+      gap: 45px;
+      padding-bottom: 45px;
+    }
+    .footer-brand img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+    .footer-brand h3 {
+      margin: 0 0 9px;
+      color: var(--mint);
+      font-size: 17px;
+    }
+    .footer-brand p {
+      max-width: 320px;
+      margin: 0;
+      color: rgba(218, 241, 222, .43);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .footer-heading {
+      margin-bottom: 17px;
+      color: var(--sage);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      color: rgba(218, 241, 222, .55);
+      font-size: 10px;
+      transition: color .25s ease, transform .25s ease;
+    }
+    .footer-links a:hover {
+      color: var(--sage);
+      transform: translateX(3px);
+    }
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-contact a {
+      color: rgba(218, 241, 222, .58);
+      font-size: 10px;
+    }
+    .footer-contact a:hover {
+      color: var(--sage);
+    }
+    .footer-contact span {
+      max-width: 200px;
+      color: rgba(218, 241, 222, .35);
+      font-size: 9px;
+      line-height: 1.6;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(142, 182, 155, .08);
+      color: rgba(218, 241, 222, .28);
+      font-size: 8px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 7px;
+    }
+    .footer-social a {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(142, 182, 155, .14);
+      color: var(--sage);
+      transition: background .25s ease, color .25s ease;
+    }
+    .footer-social a:hover {
+      background: var(--sage);
+      color: var(--deepest-teal);
+    }
+    .faq-reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .faq-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 950px) {
+      .desktop-nav,
+      .header-cta {
+        display: none;
+      }
+      .menu-btn {
+        display: flex;
+      }
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+      .question-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    @media (max-width: 650px) {
+      .topbar {
+        display: none;
+      }
+      .header-main {
+        padding: 7px 18px;
+      }
+      .brand-logo {
+        width: 62px;
+        height: 62px;
+      }
+      .hero-container {
+        padding: 140px 20px 80px;
+      }
+      .hero-title {
+        font-size: 48px;
+        letter-spacing: -3px;
+      }
+      .hero-ring {
+        right: -190px;
+        width: 390px;
+        height: 390px;
+        opacity: .45;
+      }
+      .faq-section {
+        padding: 75px 20px;
+      }
+      .faq-tools {
+        flex-direction: column;
+      }
+      .clear-search {
+        width: 100%;
+        height: 45px;
+      }
+      .faq-question {
+        min-height: 65px;
+        padding: 16px;
+        font-size: 11px;
+      }
+      .faq-answer p {
+        padding: 0 20px 22px 16px;
+      }
+      .question-cta {
+        padding: 28px 23px;
+      }
+      .final-cta {
+        padding: 80px 20px;
+      }
+      .final-cta-bg-logo {
+        right: -200px;
+        width: 450px;
+        height: 450px;
+      }
+      .final-cta-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .final-cta-btn {
+        justify-content: center;
+      }
+      .site-footer {
+        padding: 55px 20px 22px;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    .hero-title {
+      font-size: clamp(1.3rem, 4vw, 2.2rem);
+      line-height: 0.92;
+      letter-spacing: -1px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: clamp(1.5rem, 2.8vw, 3rem);
+      }
+    }
+    @media (max-width: 650px) {
+      .hero-title {
+        font-size: 1.3rem;
+        letter-spacing: -1px;
+      }
+    }
+    .faq-title,
+    .final-cta-title {
+      font-size: clamp(1.3rem, 4vw, 2.2rem);
+      line-height: 0.92;
+      letter-spacing: -1px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    @media (min-width: 768px) {
+      .faq-title,
+      .final-cta-title {
+        font-size: clamp(1.5rem, 2.8vw, 3rem);
+      }
+    }
+    .faq-intro,
+    .final-cta-text {
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .faq-label,
+    .final-cta-label {
+      font-size: 0.75rem;
+    }
+    @media (max-width: 650px) {
+      .faq-title,
+      .final-cta-title {
+        font-size: 1.3rem;
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="siteHeader" class="site-header">
+    <div class="topbar">
+      <div class="topbar-inner">
+        <a href="mailto:YOUR_EMAIL@example.com" class="topbar-link"><i class="fas fa-envelope"></i>YOUR_EMAIL@example.com</a>
+        <a href="tel:+234XXXXXXXXXX" class="topbar-link"><i class="fas fa-phone"></i>+234 XXX XXX XXXX</a>
+      </div>
+    </div>
+    <div class="header-main">
+      <a href="index.html"><img src="img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png" alt="Enhanced Marine Limited" class="brand-logo" /></a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="technologies.html" class="nav-link">Technology</a>
+        <a href="project.html" class="nav-link">Projects</a>
+        <a href="faq.html" class="nav-link active">FAQ</a>
+      </nav>
+      <a href="contact.html" class="header-cta">Contact Us <i class="fas fa-arrow-right"></i></a>
+      <button id="menuBtn" class="menu-btn" aria-label="Open navigation menu" aria-expanded="false">
+        <span class="burger-line line-1"></span><span class="burger-line line-2"></span><span class="burger-line line-3"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="about.html" class="mobile-link">About</a>
+        <a href="services.html" class="mobile-link">Services</a>
+        <a href="technologies.html" class="mobile-link">Technology</a>
+        <a href="project.html" class="mobile-link">Projects</a>
+        <a href="faq.html" class="mobile-link">FAQ</a>
+        <a href="contact.html" class="mobile-contact">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+  <section class="faq-hero">
+    <div class="hero-ring"><div class="hero-sweep"></div></div>
+    <div class="hero-container">
+      <div class="hero-kicker faq-reveal">Frequently Asked Questions</div>
+      <h1 class="hero-title faq-reveal">Questions Before <span>We Go Deeper.</span></h1>
+      <p class="hero-description faq-reveal">Find answers to common questions about our marine inspection, ROV operations, mooring line and riser inspection services. If you cannot find what you are looking for, our team is ready to discuss your project requirements directly.</p>
+    </div>
+  </section>
+  <section class="faq-section">
+    <div class="faq-container">
+      <div class="faq-header faq-reveal">
+        <div class="faq-label">Need To Know</div>
+        <h2 class="faq-title">Answers to the questions that <span>matter.</span></h2>
+        <p class="faq-intro">A few answers to common questions about our marine inspection, ROV, mooring line and riser inspection services.</p>
+      </div>
+      <div class="faq-tools faq-reveal">
+        <div class="faq-search"><i class="fas fa-search"></i><input id="faqSearch" type="text" placeholder="Search your question..." autocomplete="off" /></div>
+        <button id="clearSearch" class="clear-search" aria-label="Clear search"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="faqList" class="faq-list">
+        <div class="faq-item open faq-reveal" data-question="What marine inspection services do you provide?">
+          <button class="faq-question" type="button" aria-expanded="true"><span>What marine inspection services do you provide?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>We provide marine inspection services focused on helping clients assess the condition and integrity of offshore and marine assets. The exact inspection scope can be defined around the asset, environment and project requirements.</p></div></div>
+        </div>
+        <div class="faq-item faq-reveal" data-question="What are ROV operations used for?">
+          <button class="faq-question" type="button" aria-expanded="false"><span>What are ROV operations used for?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>ROV operations allow underwater observation and inspection to be carried out remotely, providing access to subsea environments and assets where direct access may be difficult or impractical.</p></div></div>
+        </div>
+        <div class="faq-item faq-reveal" data-question="Do you specialize in mooring line inspections?">
+          <button class="faq-question" type="button" aria-expanded="false"><span>Do you specialize in mooring line inspections?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Mooring line inspection is one of the specialist services highlighted by the company. Inspection scope and deliverables can be discussed based on the specific mooring system and project requirements.</p></div></div>
+        </div>
+        <div class="faq-item faq-reveal" data-question="Do you carry out riser inspections?">
+          <button class="faq-question" type="button" aria-expanded="false"><span>Do you carry out riser inspections?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. We provide specialist riser inspection support. Contact the team with your asset details and inspection objectives so the appropriate scope can be discussed.</p></div></div>
+        </div>
+        <div class="faq-item faq-reveal" data-question="Can an inspection be planned around a specific offshore project?">
+          <button class="faq-question" type="button" aria-expanded="false"><span>Can an inspection be planned around a specific offshore project?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Inspection requirements vary by asset and operating environment. The project scope can be discussed with the team so the inspection approach, access requirements and expected deliverables are clearly defined before work begins.</p></div></div>
+        </div>
+        <div class="faq-item faq-reveal" data-question="How can I request an inspection?">
+          <button class="faq-question" type="button" aria-expanded="false"><span>How can I request an inspection?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Use the contact or inspection request button below and provide your project requirements, asset type and preferred contact details. The team can then discuss the next steps with you.</p></div></div>
+        </div>
+        <div class="faq-item faq-reveal" data-question="What information should I provide when contacting your team?">
+          <button class="faq-question" type="button" aria-expanded="false"><span>What information should I provide when contacting your team?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Where possible, provide the type of asset, location, inspection objective, expected scope and any relevant project timing. This helps our team understand your requirements and determine how best to support the project.</p></div></div>
+        </div>
+        <div class="faq-item faq-reveal" data-question="Can you support both planned and project-specific inspection requirements?">
+          <button class="faq-question" type="button" aria-expanded="false"><span>Can you support project-specific inspection requirements?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Each marine environment and asset can have different inspection requirements. We work with clients to understand the specific objectives and define an inspection scope that matches the project requirements.</p></div></div>
+        </div>
+      </div>
+      <div id="noResults" class="no-results"><i class="fas fa-water"></i><strong>No matching question found.</strong><span>Try a different search term or contact our team directly.</span></div>
+      <div class="question-cta faq-reveal">
+        <div>
+          <div class="question-cta-label">Still Have Questions?</div>
+          <h3>Let's talk about your project.</h3>
+          <p>Our team can help you understand the appropriate inspection scope for your marine or subsea requirements.</p>
+        </div>
+        <a href="contact.html" class="question-cta-button">Contact Our Team <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+  <section class="final-cta">
+    <div class="final-cta-bg-logo" aria-hidden="true"></div>
+    <div class="final-cta-grid" aria-hidden="true"></div>
+    <div class="final-cta-container faq-reveal">
+      <div class="final-cta-label">Start Your Next Inspection</div>
+      <h2 class="final-cta-title">Let's Inspect <span>What Lies Beneath.</span></h2>
+      <p class="final-cta-text">Whether you need marine inspection, ROV operations, mooring line inspection or riser inspection support, let's discuss the requirements of your next project.</p>
+      <div class="final-cta-actions">
+        <a href="mailto:YOUR_EMAIL@example.com" class="final-cta-btn primary">Request An Inspection <i class="fas fa-arrow-right"></i></a>
+        <a href="tel:+234XXXXXXXXXX" class="final-cta-btn secondary">Contact Our Team <i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+    <div class="final-cta-mark">Precision • Visibility • Insight</div>
+  </section>
+  <footer class="site-footer">
+    <div class="footer-watermark" aria-hidden="true"></div>
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png" alt="Enhanced Marine Limited logo" />
+          <h3>Enhanced Marine Limited</h3>
+          <p>Specialist marine and subsea inspection services focused on ROV operations, mooring line inspections and riser inspections.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="technologies.html">Technology</a></li><li><a href="project.html">Projects</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li></ul>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <ul class="footer-links"><li><a href="services.html">Marine Inspections</a></li><li><a href="services.html">ROV Operations</a></li><li><a href="services.html">Mooring Line Inspection</a></li><li><a href="services.html">Riser Inspection</a></li><li><a href="technologies.html">Technology</a></li></ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <div class="footer-contact">
+            <a href="mailto:YOUR_EMAIL@example.com"><i class="fas fa-envelope"></i>YOUR_EMAIL@example.com</a>
+            <a href="tel:+234XXXXXXXXXX"><i class="fas fa-phone"></i>+234 XXX XXX XXXX</a>
+            <span>For project enquiries and inspection requirements, contact our team.</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footerYear"></span> Enhanced Marine Limited. All rights reserved.</span>
+        <div class="footer-social"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+        <span>Marine • ROV • Subsea Inspection</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    faqQuestions.forEach(button => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        const isOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item").forEach(other => {
+          other.classList.remove("open");
+          const otherButton = other.querySelector(".faq-question");
+          if (otherButton) otherButton.setAttribute("aria-expanded", "false");
+        });
+        if (!isOpen) { item.classList.add("open"); button.setAttribute("aria-expanded", "true"); }
+      });
+    });
+    const searchInput = document.getElementById("faqSearch");
+    const clearSearch = document.getElementById("clearSearch");
+    const noResults = document.getElementById("noResults");
+    const faqItems = document.querySelectorAll(".faq-item");
+    searchInput.addEventListener("input", () => {
+      const searchValue = searchInput.value.toLowerCase().trim();
+      let matches = 0;
+      faqItems.forEach(item => {
+        const question = item.dataset.question.toLowerCase();
+        const answer = item.querySelector(".faq-answer").innerText.toLowerCase();
+        const matchesSearch = question.includes(searchValue) || answer.includes(searchValue);
+        if (matchesSearch || searchValue === "") { item.style.display = ""; matches++; } else { item.style.display = "none"; }
+      });
+      if (searchValue.length > 0) { clearSearch.classList.add("show"); } else { clearSearch.classList.remove("show"); }
+      if (matches === 0 && searchValue.length > 0) { noResults.classList.add("show"); } else { noResults.classList.remove("show"); }
+    });
+    clearSearch.addEventListener("click", () => {
+      searchInput.value = "";
+      faqItems.forEach(item => { item.style.display = ""; });
+      clearSearch.classList.remove("show");
+      noResults.classList.remove("show");
+      searchInput.focus();
+    });
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      menuBtn.classList.toggle("burger-open", isOpen);
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+    document.querySelectorAll(".mobile-link, .mobile-contact").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        menuBtn.classList.remove("burger-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+    const siteHeader = document.getElementById("siteHeader");
+    window.addEventListener("scroll", () => {
+      siteHeader.classList.toggle("scrolled", window.scrollY > 25);
+    });
+    const revealElements = document.querySelectorAll(".faq-reveal");
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+    revealElements.forEach(element => { revealObserver.observe(element); });
+    const footerYear = document.getElementById("footerYear");
+    footerYear.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
