@@ -1,0 +1,566 @@
+*,
+body,
+button,
+input,
+textarea,
+select {
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 800;
+}
+
+p:not(.hero-kicker):not(.section-kicker):not(.contact-label):not(
+    .footer-heading
+  ):not(.form-label):not(.faq-label):not(.cta-label):not(.service-number):not(
+    .detail-number
+  ):not(.approach-number):not(.value-number):not(.leader-role):not(
+    .project-category
+  ):not(.project-year):not(.project-tag):not(.case-overlay-label):not(
+    .process-number
+  ):not(.tech-number):not(.data-label):not(.data-readout):not(.data-axis):not(
+    .step-number
+  ):not(.hours-title):not(.map-card-label):not(.final-cta-label) {
+  font-size: 1.05rem !important;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.hero-description,
+.section-description,
+.values-description,
+.cta-text,
+.footer-description,
+.intro-description,
+.project-description,
+.process-description,
+.contact-note,
+.faq-intro,
+.final-cta-text,
+.why-description,
+.form-subtitle,
+.section-intro,
+.map-description {
+  font-size: clamp(0.95rem, 0.4vw + 0.88rem, 1.1rem);
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.mission-card,
+.value-card,
+.team-card,
+.contact-card,
+.hours-card,
+.map-card,
+.form-wrapper,
+.project-card,
+.process-card,
+.service-card,
+.approach-card,
+.system-card,
+.faq-item,
+.feature-card,
+.metric-card,
+.why-card,
+.tech-card,
+.tech-data-box {
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(5, 31, 32, 0.12);
+}
+
+.mission-card:hover,
+.value-card:hover,
+.team-card:hover,
+.contact-card:hover,
+.project-card:hover,
+.process-card:hover,
+.service-card:hover,
+.approach-card:hover,
+.system-card:hover,
+.faq-item:hover,
+.feature-card:hover,
+.metric-card:hover,
+.why-card:hover,
+.tech-card:hover {
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.24),
+    0 4px 12px rgba(5, 31, 32, 0.16);
+}
+
+.mission-card p,
+.service-card p,
+.team-info p,
+.approach-card p {
+  color: #40584f;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.values-description,
+.value-card p,
+.system-card p,
+.tech-card p,
+.tech-visual-copy p,
+.tech-data-row {
+  color: rgba(218, 241, 222, 0.88);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.why-card-text {
+  color: #e7f6ea;
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 1;
+}
+
+.tech-card {
+  background: rgba(22, 56, 50, 0.68);
+  border-color: rgba(142, 182, 155, 0.3);
+}
+
+.tech-card h3 {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.project-description {
+  color: #f3fff5;
+  text-shadow: 0 1px 8px rgba(5, 31, 32, 0.75);
+}
+
+.hero-description,
+.footer-description {
+  color: #edf8ef;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 1;
+  text-shadow: 0 1px 8px rgba(5, 31, 32, 0.75);
+}
+
+.faq-answer p,
+.faq-intro {
+  color: #40584f;
+  font-size: 1rem;
+}
+
+.contact-note {
+  color: #40584f;
+}
+
+.section-kicker,
+.hero-kicker,
+.footer-heading,
+.contact-label,
+.faq-label,
+.cta-label {
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+
+.topbar,
+.topbar-inner {
+  font-size: 0.75rem;
+}
+
+.nav-link,
+.desktop-nav a,
+.footer-nav a,
+.nav-gradient > ul a,
+.mobile-nav a,
+#mobileMenu > ul a {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+button:not(.faq-question),
+a[class*="button"],
+.header-cta,
+.rov-button,
+.project-button,
+.all-projects-button,
+.explore-button {
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(5, 31, 32, 0.2);
+}
+
+.faq-question,
+input,
+textarea,
+select {
+  font-size: 1rem;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #ffa500;
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .mission-card p,
+  .service-card p,
+  .value-card p,
+  .approach-card p,
+  .system-card p,
+  .tech-card p,
+  .tech-visual-copy p,
+  .tech-data-row {
+    font-size: 0.9rem;
+  }
+}
+
+.story-section :is(h1, h2, h3, h4, p, span, a, strong, li),
+.mission-section :is(h1, h2, h3, h4, p, span, a, strong, li),
+.leadership-section :is(h1, h2, h3, h4, p, span, a, strong, li),
+.team-section :is(h1, h2, h3, h4, p, span, a, strong, li),
+.capability-section :is(h1, h2, h3, h4, p, span, a, strong, li) {
+  color: #051f20 !important;
+}
+
+.about-hero :is(h1, h2, h3, h4, p, span, a, strong, li),
+.values-section :is(h1, h2, h3, h4, p, span, a, strong, li),
+.final-cta :is(h1, h2, h3, h4, p, span, strong, li),
+.final-cta a:not(.cta-button),
+.footer :is(h1, h2, h3, h4, p, span, a, strong, li) {
+  color: #fff !important;
+}
+
+.story-visual :is(h1, h2, h3, h4, p, span, a, strong, li),
+.leader-social:hover {
+  color: #fff !important;
+}
+
+.final-cta .cta-button :is(span, i) {
+  color: #051f20 !important;
+}
+
+:is(
+    .contact-section,
+    .faq-section,
+    .intro-section,
+    .case-study,
+    .services-section,
+    .approach-section,
+    .tech-section,
+    .data-section,
+    .workflow-section,
+    .trust-strip,
+    .projects-section
+  )
+  :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    a:not([class*="button"]):not(.final-cta-btn),
+    strong,
+    li,
+    dt,
+    dd
+  ) {
+  color: #051f20 !important;
+}
+
+:is(
+    .contact-hero,
+    .faq-hero,
+    .projects-hero,
+    .services-hero,
+    .technology-hero,
+    .hero-fixed,
+    .map-section,
+    .process-section,
+    .detail-section,
+    .systems-section,
+    .question-cta,
+    .hours-card,
+    .project-card,
+    .case-overlay,
+    .tech-visual,
+    .data-visual,
+    .rov-section,
+    .about-merged,
+    .final-cta
+  )
+  :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    a:not([class*="button"]):not(.final-cta-btn),
+    strong,
+    li,
+    dt,
+    dd
+  ) {
+  color: #fff !important;
+}
+
+:is(.footer, .site-footer) :is(h1, h2, h3, h4, h5, h6, p, span, a, strong, li) {
+  color: #fff !important;
+}
+
+.topbar-link,
+.nav-link,
+.desktop-nav a,
+.mobile-link,
+.nav-gradient > ul a,
+#mobileMenu > ul a,
+.top-contact a {
+  color: #fff !important;
+}
+
+.services-section .card-three .card-content :is(h1, h2, h3, h4, p, span, a, strong),
+.case-study .case-overlay :is(h1, h2, h3, h4, p, span, a, strong),
+.contact-section .hours-card :is(h1, h2, h3, h4, p, span, a, strong),
+.faq-section .question-cta :is(h1, h2, h3, h4, p, span, a, strong),
+.map-section .map-card :is(h1, h2, h3, h4, p, span, a, strong),
+.projects-section .featured-image :is(h1, h2, h3, h4, p, span, a, strong),
+.case-study .case-image :is(h1, h2, h3, h4, p, span, a, strong),
+.tech-section .tech-visual :is(h1, h2, h3, h4, p, span, a, strong),
+.data-section .data-visual :is(h1, h2, h3, h4, p, span, a, strong) {
+  color: #fff !important;
+}
+
+.contact-section .form-wrapper :is(h1, h2, h3, h4, p, span, a, strong, label),
+.contact-section .contact-card :is(h1, h2, h3, h4, p, span, a, strong),
+.faq-section .faq-item :is(h1, h2, h3, h4, p, span, a, strong),
+.projects-section .featured-content :is(h1, h2, h3, h4, p, span, a, strong),
+.tech-section .tech-feature :is(h1, h2, h3, h4, p, span, a, strong),
+.data-section .data-content :is(h1, h2, h3, h4, p, span, a, strong) {
+  color: #051f20 !important;
+}
+
+body:has(.hero-fixed) .about-merged :is(h1, h2, h3, h4, h5, h6, p, span, a, strong, li),
+body:has(.hero-fixed) .rov-section :is(h1, h2, h3, h4, h5, h6, p, span, a, strong, li),
+body:has(.hero-fixed) .tech-section :is(h1, h2, h3, h4, h5, h6, p, span, a, strong, li),
+body:has(.hero-fixed) .why-section :is(h1, h2, h3, h4, h5, h6, p, span, a, strong, li),
+body:has(.technology-hero) .why-section :is(h1, h2, h3, h4, h5, h6, p, span, a, strong, li) {
+  color: #fff !important;
+}
+
+body:has(.services-hero) .why-section :is(h1, h2, h3, h4, h5, h6, p, li, dt, dd),
+body:has(.projects-hero) .final-cta :is(h1, h2, h3, h4, h5, h6, p, li, dt, dd) {
+  color: #051f20 !important;
+}
+
+body:has(.services-hero) .why-section :is(span, strong, a:not([class*="button"])),
+body:has(.projects-hero) .final-cta :is(span, strong, a:not([class*="button"]):not(.final-cta-btn)) {
+  color: #051f20 !important;
+}
+
+body:has(.projects-hero) .final-cta .cta-button,
+body:has(.projects-hero) .final-cta .cta-button :is(span, i) {
+  color: #fff !important;
+}
+
+:is(.footer, .site-footer) .social:hover,
+.site-footer .footer-social a:hover {
+  color: #051f20 !important;
+}
+
+.marine-expertise-section .section-marker,
+.about-merged .section-marker,
+.rov-section .section-marker,
+.tech-section .section-marker,
+.final-cta .section-marker {
+  color: #fff !important;
+}
+
+.faq-answer-inner {
+  color: #051f20 !important;
+}
+
+.header-cta {
+  color: #fff !important;
+}
+
+.header-cta:hover {
+  color: #051f20 !important;
+}
+
+.question-cta-button,
+.question-cta-button :is(span, i),
+.final-cta-btn.primary,
+.final-cta-btn.primary :is(span, i) {
+  color: #051f20 !important;
+}
+
+.submit-button :is(span, i),
+.case-button :is(span, i),
+.services-section .card-two .explore-button :is(span, i),
+.services-section .card-three .explore-button :is(span, i),
+.all-projects-button :is(span, i) {
+  color: #fff !important;
+}
+
+.services-section .card-one .explore-button :is(span, i) {
+  color: #051f20 !important;
+}
+
+.faq-item.open .faq-icon {
+  color: #fff !important;
+}
+
+.project-button:hover span {
+  color: #fff !important;
+}
+
+.final-cta .cta-button :is(span, i),
+.final-cta-btn.primary :is(span, i) {
+  color: #051f20 !important;
+}
+
+.final-cta-btn.secondary {
+  color: #fff !important;
+}
+
+.final-cta-btn.secondary:hover {
+  color: #051f20 !important;
+}
+
+body:has(.projects-hero) .final-cta .cta-button,
+body:has(.projects-hero) .final-cta .cta-button :is(span, i) {
+  color: #fff !important;
+}
+
+body:has(.projects-hero) .final-cta .section-marker {
+  color: #051f20 !important;
+}
+
+body:has(.services-hero) .why-section .why-description,
+body:has(.projects-hero) .final-cta .cta-label,
+body:has(.projects-hero) .final-cta .cta-title,
+body:has(.projects-hero) .final-cta .cta-title span,
+body:has(.projects-hero) .final-cta .cta-text,
+.contact-section .contact-note {
+  color: #051f20 !important;
+}
+
+.faq-section .question-cta .question-cta-button,
+.faq-section .question-cta .question-cta-button :is(span, i) {
+  color: #051f20 !important;
+}
+
+body:has(.hero-fixed) .tech-section .tech-intro p {
+  color: #fff !important;
+}
+
+body:has(.faq-hero) .final-cta .final-cta-btn.primary,
+body:has(.faq-hero) .final-cta .final-cta-btn.primary :is(span, i) {
+  color: #051f20 !important;
+}
+
+body:has(.faq-hero) .final-cta .final-cta-btn.primary:hover {
+  color: #051f20 !important;
+}
+
+.map-section .map-card-label,
+.map-section .map-address,
+.map-section .map-link,
+.contact-hero .hero-scroll,
+.contact-hero .hero-service-tag,
+.faq-hero .hero-scroll,
+.projects-hero .hero-scroll,
+.services-hero .hero-scroll,
+.technology-hero .hero-scroll {
+  color: #fff !important;
+}
+
+.contact-section .form-note {
+  color: #051f20 !important;
+}
+
+:is(
+    .contact-section,
+    .faq-section,
+    .intro-section,
+    .case-study,
+    .services-section,
+    .approach-section,
+    .tech-section,
+    .data-section,
+    .workflow-section,
+    .trust-strip,
+    .projects-section
+  )
+  :is(.section-kicker, .faq-label, .contact-label, .filter-label) {
+  color: #051f20 !important;
+}
+
+:is(
+    .contact-hero,
+    .faq-hero,
+    .projects-hero,
+    .services-hero,
+    .technology-hero,
+    .map-section,
+    .process-section,
+    .detail-section,
+    .systems-section,
+    .question-cta,
+    .hours-card,
+    .project-card,
+    .case-overlay,
+    .tech-visual,
+    .data-visual,
+    .rov-section,
+    .about-merged,
+    .final-cta
+  )
+  :is(
+    .hero-kicker,
+    .hero-scroll,
+    .hero-service-tag,
+    .section-kicker,
+    .cta-label,
+    .hours-title,
+    .question-cta-label,
+    .visual-label,
+    .tech-visual-label,
+    .data-axis,
+    .tech-data-row,
+    .why-label
+  ) {
+  color: #fff !important;
+}
+
+:is(.footer, .site-footer) :is(.footer-brand, .footer-heading, .footer-contact, .footer-bottom) {
+  color: #fff !important;
+}
+
+body:has(.hero-fixed) :is(.why-label, .feature-text, .tech-bottom, .tech-data-title, .data-label, .data-readout, .section-index),
+body:has(.technology-hero) :is(.why-label, .tech-visual-label, .tech-data-title, .data-label, .data-readout) {
+  color: #fff !important;
+}
+
+body:has(.services-hero) .why-label,
+.trust-strip .metric-label {
+  color: #051f20 !important;
+}
