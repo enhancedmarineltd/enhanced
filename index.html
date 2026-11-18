@@ -415,7 +415,8 @@
       /* ----- SERVICE CARDS ----- */
       .services-section .feature-card {
         position: relative;
-        height: 300px;
+        height: auto;
+        min-height: 400px;
         border-radius: 14px;
         overflow: visible;
         transition: transform 0.35s ease;
@@ -426,9 +427,10 @@
       .services-section .card-content {
         position: relative;
         width: 100%;
-        height: 100%;
+        height: auto;
+        min-height: 400px;
         border-radius: 14px;
-        padding: 28px;
+        padding: 28px 28px 92px;
         overflow: hidden;
       }
       .services-section .explore-wrapper {
@@ -501,10 +503,12 @@
       }
       @media (max-width: 768px) {
         .services-section .feature-card {
-          height: 280px;
+          height: auto;
+          min-height: 360px;
         }
         .services-section .card-content {
-          padding: 20px;
+          min-height: 360px;
+          padding: 20px 20px 88px;
         }
       }
 
@@ -1724,17 +1728,26 @@
             110deg,
             rgba(5, 31, 32, 0.78),
             rgba(11, 43, 38, 0.22)
-          ),
-          url("img/Mechanical solutions.jpg") center / cover no-repeat;
+          );
         box-shadow:
           inset 0 0 100px rgba(5, 31, 32, 0.72),
           0 25px 65px rgba(0, 0, 0, 0.24);
         transform: translateZ(0);
         transition: background-position 0.25s ease;
       }
+      .tech-visual-video {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+      }
       .tech-visual::before {
         content: "";
         position: absolute;
+        z-index: 1;
         inset: 0;
         background:
           radial-gradient(
@@ -1748,6 +1761,7 @@
       .tech-visual::after {
         content: "";
         position: absolute;
+        z-index: 2;
         inset: 0;
         background: repeating-linear-gradient(
           to bottom,
@@ -4040,7 +4054,7 @@
           <div class="about-grid">
             <div class="image-wrapper reveal-slide-left" id="imageWrapper">
               <img
-                src="img/Mechanical solutions.jpg"
+                src="img/Subsea ROV Inspection.jpg"
                 alt="ROV underwater inspection"
                 style="
                   width: 100%;
@@ -4281,26 +4295,27 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path d="M3 17l3 3 4-4"></path>
-                  <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12"></path>
-                  <path d="M8 7h8"></path>
-                  <path d="M8 11h6"></path>
+                  <circle cx="12" cy="6" r="3"></circle>
+                  <path d="M12 9v5"></path>
+                  <path d="M12 14c-4 2-4 6-8 6"></path>
+                  <path d="M12 14c4 2 4 6 8 6"></path>
+                  <path d="M4 20h16"></path>
                 </svg>
               </div>
               <h3
                 class="text-[17px] font-semibold leading-[1.2] text-[#0B2B26]"
               >
-                Marine<br />Inspections
+                Mooring Line &amp; Risers<br />Inspection Specialist
               </h3>
               <p
-                class="mt-4 max-w-[220px] text-[11px] leading-5 text-[#235347]"
+                class="mt-4 max-w-[240px] text-[11px] leading-5 text-[#235347]"
               >
-                Professional inspection solutions supporting the safety,
-                integrity and performance of marine assets.
+                Specialist inspection services focused on the integrity,
+                condition and performance of mooring lines and riser systems.
               </p>
             </div>
             <div class="explore-wrapper">
-              <a href="#marine-inspections" class="explore-button"
+              <a href="#mooring-risers" class="explore-button"
                 >Explore More <span>→</span></a
               >
             </div>
@@ -4354,32 +4369,31 @@
                   height="42"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="#8EB69B"
+                  stroke="#DAF1DE"
                   stroke-width="1.3"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <circle cx="12" cy="6" r="3"></circle>
-                  <path d="M12 9v5"></path>
-                  <path d="M12 14c-4 2-4 6-8 6"></path>
-                  <path d="M12 14c4 2 4 6 8 6"></path>
-                  <path d="M4 20h16"></path>
+                  <path d="M3 17l3 3 4-4"></path>
+                  <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12"></path>
+                  <path d="M8 7h8"></path>
+                  <path d="M8 11h6"></path>
                 </svg>
               </div>
               <h3
-                class="text-[17px] font-semibold leading-[1.2] text-[#DAF1DE]"
+                class="text-[17px] font-semibold leading-[1.2] text-[#FFFFFF]"
               >
-                Mooring Line &amp; Risers<br />Inspection Specialist
+                Marine<br />Inspections
               </h3>
               <p
-                class="mt-4 max-w-[240px] text-[11px] leading-5 text-[#DAF1DE]"
+                class="mt-4 max-w-[220px] text-[11px] leading-5 text-[#FFFFFF]"
               >
-                Specialist inspection services focused on the integrity,
-                condition and performance of mooring lines and riser systems.
+                Professional inspection solutions supporting the safety,
+                integrity and performance of marine assets.
               </p>
             </div>
             <div class="explore-wrapper">
-              <a href="#mooring-risers" class="explore-button"
+              <a href="#marine-inspections" class="explore-button"
                 >Explore More <span>→</span></a
               >
             </div>
@@ -4537,6 +4551,20 @@
         <div class="tech-showcase">
           <!-- Large technology visual -->
           <div class="tech-visual tech-reveal-left" id="techVisual">
+            <video
+              class="tech-visual-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source
+                src="video/Underwater%20inspection.mp4"
+                type="video/mp4"
+              />
+            </video>
             <div class="tech-scan"></div>
 
             <div class="tech-frame">
@@ -4576,7 +4604,7 @@
 
             <div class="tech-visual-copy">
               <div class="tech-visual-number">01 / SUBSEA CAPABILITY</div>
-              <h3>Seeing beyond the surface.</h3>
+              <h3>Underwater Inspection</h3>
               <p>
                 Technology-supported inspection operations provide clearer
                 visibility into underwater environments and critical marine

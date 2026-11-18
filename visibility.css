@@ -472,6 +472,10 @@ body:has(.hero-fixed) .tech-section .tech-intro p {
   color: #fff !important;
 }
 
+body:has(.hero-fixed) .tech-section .tech-card :is(h3, p, .tech-card-number, .tech-card-arrow) {
+  color: #fff !important;
+}
+
 body:has(.faq-hero) .final-cta .final-cta-btn.primary,
 body:has(.faq-hero) .final-cta .final-cta-btn.primary :is(span, i) {
   color: #051f20 !important;
