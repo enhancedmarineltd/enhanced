@@ -223,15 +223,38 @@
         white-space: nowrap;
         letter-spacing: -0.02em;
       }
+      @media (min-width: 768px) {
+        .nav-gradient > div:first-child {
+          gap: 8px;
+        }
+      }
       @media (min-width: 951px) {
         .nav-gradient > div:first-child img {
-          margin-left: 40px;
+          margin-left: 0;
         }
         .header-brand-name {
-          position: absolute;
-          left: calc(33% - 70px);
-          transform: translateX(-50%);
-          white-space: nowrap;
+          position: static;
+          transform: none;
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .nav-gradient > div:first-child {
+          margin-left: calc((100vw - 768px) / 2);
+        }
+      }
+      @media (min-width: 1024px) and (max-width: 1279px) {
+        .nav-gradient > div:first-child {
+          margin-left: calc((100vw - 1024px) / 2);
+        }
+      }
+      @media (min-width: 1280px) and (max-width: 1535px) {
+        .nav-gradient > div:first-child {
+          margin-left: calc((100vw - 1280px) / 2);
+        }
+      }
+      @media (min-width: 1536px) {
+        .nav-gradient > div:first-child {
+          margin-left: calc((100vw - 1536px) / 2);
         }
       }
       header.scrolled .nav-gradient {
@@ -1723,12 +1746,11 @@
         min-height: 520px;
         overflow: hidden;
         border: 1px solid rgba(142, 182, 155, 0.25);
-        background:
-          linear-gradient(
-            110deg,
-            rgba(5, 31, 32, 0.78),
-            rgba(11, 43, 38, 0.22)
-          );
+        background: linear-gradient(
+          110deg,
+          rgba(5, 31, 32, 0.78),
+          rgba(11, 43, 38, 0.22)
+        );
         box-shadow:
           inset 0 0 100px rgba(5, 31, 32, 0.72),
           0 25px 65px rgba(0, 0, 0, 0.24);
@@ -3789,7 +3811,7 @@
             class="h-12 w-12 sm:h-16 sm:w-16 md:h-[4.5rem] md:w-[4.5rem] object-contain"
           />
           <p
-            class="header-brand-name text-lg font-bold text-[#fff] sm:text-xl md:text-2xl"
+            class="header-brand-name text-lg font-bold text-[#fff] sm:text-xl md:text-4xl"
           >
             Enhanced Marine Limited
           </p>
@@ -4538,7 +4560,10 @@
         <div class="tech-header tech-reveal">
           <div class="tech-heading-wrap">
             <div class="tech-label"><span></span>TECHNOLOGY</div>
-            <h2>Technology that <em>goes deeper.</em></h2>
+            <h2 style="color: #fff !important">
+              Technology that
+              <em style="color: #8eb69b !important">goes deeper.</em>
+            </h2>
           </div>
           <div class="tech-intro">
             <p>
