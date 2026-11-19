@@ -384,12 +384,15 @@ body:has(.projects-hero) .final-cta .cta-button :is(span, i) {
   color: #051f20 !important;
 }
 
-.marine-expertise-section .section-marker,
 .about-merged .section-marker,
 .rov-section .section-marker,
 .tech-section .section-marker,
 .final-cta .section-marker {
   color: #fff !important;
+}
+
+.marine-expertise-section .section-marker {
+  color: #235347 !important;
 }
 
 .faq-answer-inner {

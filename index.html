@@ -516,6 +516,13 @@
         background: var(--mid-teal);
         color: var(--mint);
       }
+      .services-section .card-four .card-content {
+        background: var(--sage);
+      }
+      .services-section .card-four .explore-button {
+        background: var(--deep-teal);
+        color: var(--mint);
+      }
       .services-section .decorative-circle {
         position: absolute;
         width: 250px;
@@ -667,7 +674,7 @@
         font-size: 1.4rem;
         font-weight: 700;
         color: var(--mid-teal);
-        opacity: 0.1;
+        opacity: 0.32;
       }
       @media (min-width: 600px) {
         .metric-card .card-number {
@@ -1328,6 +1335,12 @@
         letter-spacing: 2px;
         color: var(--sage);
       }
+      .telemetry-label {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+      }
       .depth-data strong {
         color: var(--sage);
         font-size: 14px;
@@ -1424,6 +1437,13 @@
           top: 25px;
           left: 25px;
           right: 25px;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .live-status {
+          font-size: 8px;
+          letter-spacing: 1px;
         }
         .rov-hud {
           top: 20px;
@@ -1452,7 +1472,16 @@
           left: -25px;
         }
         .depth-data {
-          display: none;
+          display: block;
+          font-size: 8px;
+          letter-spacing: 1px;
+          text-align: left;
+        }
+        .depth-data strong {
+          font-size: 11px;
+        }
+        .telemetry-label {
+          font-size: 7px;
         }
       }
       .rov-features {
@@ -3753,53 +3782,27 @@
           <span class="text-[#DAF1DE] truncate hidden sm:inline"
             >info@enhancedmarineltd.com</span
           >
-          <span class="text-[#8EB69B] whitespace-nowrap">+880 (4590) 053</span>
+          <a href="tel:+2348132808812" class="text-[#8EB69B] whitespace-nowrap">+234 813 280 8812</a>
         </div>
         <div class="flex items-center gap-2 sm:gap-3">
           <a
-            href="#"
+            href="mailto:info@enhancedmarineltd.com"
             class="p-1 rounded hover:bg-[#235347]/60 transition"
-            aria-label="Facebook"
+            aria-label="Email Enhanced Marine Limited"
             ><svg
               class="w-4 h-4 sm:w-5 sm:h-5 text-[#8EB69B]"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
               <path
-                d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.09 5.66 21.19 10.44 21.95v-6.95H7.9v-2.98h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.87h2.74l-.44 2.98h-2.3V21.95C18.34 21.19 22 17.09 22 12.07z"
+                d="M3 5h18v14H3z M3 6l9 7 9-7"
               /></svg
           ></a>
-          <a
-            href="#"
-            class="p-1 rounded hover:bg-[#235347]/60 transition"
-            aria-label="X"
-            ><svg
-              class="w-4 h-4 sm:w-5 sm:h-5 text-[#8EB69B]"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M22 5.92c-.63.28-1.3.47-2 .56.72-.43 1.27-1.12 1.53-1.94-.68.4-1.44.69-2.25.85C18.9 4.5 17.9 4 16.8 4c-1.6 0-2.9 1.3-2.9 2.9 0 .23.03.45.08.66C10.6 7.4 7.1 5.6 4.9 2.9c-.25.43-.4.93-.4 1.46 0 1.01.51 1.9 1.29 2.42-.48-.02-.93-.15-1.33-.36v.04c0 1.4.99 2.57 2.3 2.84-.24.07-.5.11-.77.11-.19 0-.38-.02-.56-.06.38 1.18 1.48 2.04 2.78 2.06-1.02.8-2.3 1.28-3.69 1.28-.24 0-.48-.01-.71-.04 1.32.85 2.88 1.35 4.56 1.35 5.47 0 8.47-4.53 8.47-8.47v-.39c.58-.42 1.08-.95 1.48-1.56-.53.24-1.1.4-1.69.47z"
-              /></svg
-          ></a>
-          <a
-            href="#"
-            class="p-1 rounded hover:bg-[#235347]/60 transition"
-            aria-label="LinkedIn"
-            ><svg
-              class="w-4 h-4 sm:w-5 sm:h-5 text-[#8EB69B]"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M20.45 20.45h-3.55v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.86v5.49H9.5V9h3.41v1.56h.05c.48-.9 1.66-1.85 3.42-1.85 3.66 0 4.34 2.41 4.34 5.55v6.19zM5.34 7.43a2.06 2.06 0 11.01-4.12 2.06 2.06 0 01-.01 4.12zM7.12 20.45H3.56V9h3.56v11.45z"
-              /></svg
-          ></a>
-          <button
+          <a href="#contact"
             class="hidden sm:inline-block bg-[#FFA500] text-[#051F20] font-bold px-4 py-2 rounded-md shadow-[0_8px_24px_rgba(255,165,0,0.28)] border border-[#FFD27A] hover:bg-[#FFD27A] hover:shadow-[0_10px_28px_rgba(255,165,0,0.38)] transition"
           >
             Book Appointment
-          </button>
+          </a>
         </div>
       </div>
       <nav
@@ -3808,17 +3811,17 @@
         <div class="flex items-center gap-3">
           <img
             src="img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png"
-            alt="Biztop Logo"
+            alt="Enhanced Marine Limited Logo"
             class="h-12 w-12 sm:h-16 sm:w-16 md:h-[4.5rem] md:w-[4.5rem] object-contain"
           />
           <p
-            class="header-brand-name text-lg font-bold text-[#fff] sm:text-xl md:text-4xl"
+            class="header-brand-name text-lg font-bold text-[#fff] sm:text-xl md:text-2xl lg:text-3xl"
           >
             Enhanced Marine Limited
           </p>
         </div>
         <ul
-          class="hidden md:flex items-center gap-6 lg:gap-8 ml-12 lg:ml-20 text-sm font-bold"
+          class="hidden lg:flex items-center gap-6 lg:gap-8 ml-2 xl:ml-6 text-sm font-bold"
         >
           <li>
             <a
@@ -3870,12 +3873,12 @@
             >
           </li>
         </ul>
-        <a href="contact.html" class="header-cta"
+        <a href="contact.html" class="header-cta hidden lg:inline-flex"
           >Contact Us <i class="fas fa-arrow-right"></i
         ></a>
         <button
           id="menuBtn"
-          class="md:hidden flex flex-col items-center justify-center"
+          class="lg:hidden flex flex-col items-center justify-center"
           aria-label="Toggle menu"
           aria-expanded="false"
         >
@@ -3886,7 +3889,7 @@
       </nav>
       <div
         id="mobileMenu"
-        class="md:hidden relative bg-[#0B2B26] border-b border-[#8EB69B]/30"
+        class="lg:hidden relative bg-[#0B2B26] border-b border-[#8EB69B]/30"
       >
         <ul
           class="px-6 py-4 flex flex-col gap-2 font-display text-sm font-bold uppercase tracking-wide"
@@ -3978,16 +3981,16 @@
               class="mt-5 flex flex-col sm:flex-row gap-3 sm:gap-4 btn-entrance"
               id="ctaButtons"
             >
-              <button
+              <a href="#services"
                 class="w-full sm:w-auto bg-[#235347] text-[#DAF1DE] font-bold px-6 py-3 rounded shadow hover:bg-[#8EB69B] hover:text-[#051F20] transition"
               >
                 Explore Our Services
-              </button>
-              <button
+              </a>
+              <a href="contact.html?service=Marine%20Inspection#contact"
                 class="w-full sm:w-auto border-2 border-[#8EB69B] text-[#DAF1DE] px-6 py-3 rounded hover:bg-[#8EB69B] hover:text-[#051F20] transition font-semibold"
               >
                 Request an Inspection
-              </button>
+              </a>
             </div>
           </div>
           <div class="hidden md:flex justify-end"></div>
@@ -4003,7 +4006,7 @@
       <section class="trust-strip">
         <div class="headline-wrapper">
           <p class="section-kicker">Built for offshore confidence</p>
-          <h1 class="headline-h1">Marine Inspection <span>Expertise</span></h1>
+          <h2 class="headline-h1">Marine Inspection <span>Expertise</span></h2>
           <p class="headline-sub">
             Precision, safety and reliability in every operation.
           </p>
@@ -4064,7 +4067,7 @@
         </div>
         <div class="footnote">
           <i class="fas fa-helmet-safety"></i> Built around accuracy, safety
-          &amp; reliability — metrics for demonstration
+          &amp; reliability
         </div>
       </section>
     </div>
@@ -4109,10 +4112,10 @@
                 <div class="rov-label">WHO WE ARE</div>
               </div>
               <div class="about-reveal reveal-slide-right" data-delay="0.2">
-                <h1 class="rov-title">
+                <h2 class="rov-title">
                   <span>Seeing what</span
                   ><span class="blue">others can't.</span>
-                </h1>
+                </h2>
               </div>
               <div class="about-reveal reveal-slide-right" data-delay="0.3">
                 <p class="rov-description">
@@ -4185,9 +4188,8 @@
           <div class="why-label">Why Choose Us</div>
           <h2 class="why-title">Built Around <span>What Matters.</span></h2>
           <p class="why-intro">
-            Offshore inspection requires more than equipment. It requires
-            specialist knowledge, reliable technology, clear reporting and a
-            commitment to safety at every stage of the operation.
+            Offshore inspection depends on experienced personnel, fit-for-task
+            technology, clear reporting and disciplined safety practices.
           </p>
         </div>
         <div class="why-features">
@@ -4198,8 +4200,7 @@
             </div>
             <h3 class="why-card-title">Expertise</h3>
             <p class="why-card-text">
-              Specialist knowledge focused on marine, subsea, mooring and riser
-              inspection requirements.
+              Marine and subsea inspection experience across critical assets.
             </p>
             <div class="why-card-bottom">
               <span class="why-card-tag">Specialist Knowledge</span
@@ -4213,8 +4214,7 @@
             </div>
             <h3 class="why-card-title">Technology</h3>
             <p class="why-card-text">
-              Technology-supported inspection operations designed to provide
-              better visibility into underwater environments.
+              ROV-supported access and clear visibility below the waterline.
             </p>
             <div class="why-card-bottom">
               <span class="why-card-tag">Subsea Capability</span
@@ -4228,8 +4228,7 @@
             </div>
             <h3 class="why-card-title">Reporting</h3>
             <p class="why-card-text">
-              Clear and structured inspection information that helps teams
-              understand findings and make informed decisions.
+              Findings documented to support maintenance and asset decisions.
             </p>
             <div class="why-card-bottom">
               <span class="why-card-tag">Clear Intelligence</span
@@ -4243,8 +4242,7 @@
             </div>
             <h3 class="why-card-title">Safety</h3>
             <p class="why-card-text">
-              A safety-focused approach designed to support people, assets and
-              offshore operations.
+              Safe, controlled operations planned around the asset and site.
             </p>
             <div class="why-card-bottom">
               <span class="why-card-tag">Safety First</span
@@ -4304,7 +4302,7 @@
             </p>
           </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div class="feature-card card-one reveal-slide">
             <div class="card-content">
               <div class="mb-8">
@@ -4338,7 +4336,7 @@
               </p>
             </div>
             <div class="explore-wrapper">
-              <a href="#mooring-risers" class="explore-button"
+              <a href="services.html#mooring-line-inspection" class="explore-button"
                 >Explore More <span>→</span></a
               >
             </div>
@@ -4379,7 +4377,7 @@
               </p>
             </div>
             <div class="explore-wrapper">
-              <a href="#rov-operations" class="explore-button"
+              <a href="services.html#rov-operations" class="explore-button"
                 >Explore More <span>→</span></a
               >
             </div>
@@ -4416,9 +4414,27 @@
               </p>
             </div>
             <div class="explore-wrapper">
-              <a href="#marine-inspections" class="explore-button"
+              <a href="services.html#marine-inspections" class="explore-button"
                 >Explore More <span>→</span></a
               >
+            </div>
+          </div>
+          <div class="feature-card card-four reveal-slide">
+            <div class="card-content">
+              <div class="mb-8">
+                <i class="fas fa-ruler-combined text-4xl text-[#0B2B26]" aria-hidden="true"></i>
+              </div>
+              <h3 class="text-[17px] font-semibold leading-[1.2] text-[#0B2B26]">
+                Chain Dimensional Measurement
+              </h3>
+              <p class="mt-4 max-w-[240px] text-[11px] leading-5 text-[#235347]">
+                Chain dimensions measured and documented using our specialized inspection tool.
+              </p>
+            </div>
+            <div class="explore-wrapper">
+              <a href="services.html#chain-dimensional-measurement" class="explore-button">
+                Explore More <span>→</span>
+              </a>
             </div>
           </div>
         </div>
@@ -4493,7 +4509,11 @@
             <div class="live-status">
               <span class="live-dot"></span>INSPECTION SYSTEM ACTIVE
             </div>
-            <div class="depth-data">DEPTH: <strong>—</strong></div>
+            <div class="depth-data">
+              <span class="telemetry-label">// SAMPLE TELEMETRY</span>
+              <strong>DEPTH: 142.5m</strong>
+              <span>HDG: 214° · CAM: 4K UHD</span>
+            </div>
           </div>
           <div class="target">
             <div class="target-ring"></div>
@@ -4774,9 +4794,8 @@
             <div class="projects-label">Selected Projects</div>
             <h2 class="projects-title">Work That <span>Speaks.</span></h2>
             <p class="projects-description">
-              A look at selected marine and subsea inspection operations,
-              showcasing our experience across underwater assets, ROV operations
-              and specialist inspections.
+              Selected examples of marine, ROV, mooring and riser inspection
+              work across offshore assets.
             </p>
           </div>
         </div>
@@ -4810,7 +4829,7 @@
                 <span>Delivery</span><strong>Inspection Report</strong>
               </div>
             </div>
-            <a href="#" class="project-button"
+            <a href="contact.html?service=Marine%20Inspection#contact" class="project-button"
               >View Case Study <span>→</span></a
             >
           </div>
@@ -4826,7 +4845,7 @@
                 Remote underwater inspection and visual observation of subsea
                 assets.
               </p>
-              <a href="#" class="card-link">View Project <span>→</span></a>
+              <a href="contact.html?service=ROV%20Operations#contact" class="card-link">View Project <span>→</span></a>
             </div>
           </article>
           <article class="project-card project-reveal">
@@ -4837,7 +4856,7 @@
               <p class="card-description">
                 Inspection support for critical offshore mooring systems.
               </p>
-              <a href="#" class="card-link">View Project <span>→</span></a>
+              <a href="contact.html?service=Mooring%20Line%20Inspection#contact" class="card-link">View Project <span>→</span></a>
             </div>
           </article>
           <article class="project-card project-reveal">
@@ -4848,7 +4867,7 @@
               <p class="card-description">
                 Specialist inspection support for subsea riser systems.
               </p>
-              <a href="#" class="card-link">View Project <span>→</span></a>
+              <a href="contact.html?service=Riser%20Inspection#contact" class="card-link">View Project <span>→</span></a>
             </div>
           </article>
         </div>
@@ -4875,8 +4894,8 @@
             Questions Before<br /><span>We Go Deeper.</span>
           </h2>
           <p class="faq-intro">
-            A few answers to common questions about our marine inspection, ROV,
-            mooring line and riser inspection services.
+            Common questions about inspection scope, subsea access and
+            requesting a project inspection.
           </p>
         </div>
 
@@ -4888,12 +4907,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>
-                  We provide marine inspection services focused on helping
-                  clients assess the condition and integrity of offshore and
-                  marine assets. The exact inspection scope can be defined
-                  around the asset, environment and project requirements.
-                </p>
+                <p>We inspect marine and offshore assets to document visible condition. Scope is agreed around the asset, operating environment and project objectives.</p>
               </div>
             </div>
           </div>
@@ -4905,12 +4919,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>
-                  ROV operations allow underwater observation and inspection to
-                  be carried out remotely, providing access to subsea
-                  environments and assets where direct access may be difficult
-                  or impractical.
-                </p>
+                <p>ROVs provide remote visual access to subsea assets where direct access is difficult or impractical.</p>
               </div>
             </div>
           </div>
@@ -4922,12 +4931,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>
-                  Yes. Mooring line inspection is one of the specialist services
-                  highlighted by the company. Inspection scope and deliverables
-                  can be discussed based on the specific mooring system and
-                  project requirements.
-                </p>
+                <p>Yes. We can define the inspection scope and deliverables around the mooring system and project requirements.</p>
               </div>
             </div>
           </div>
@@ -4939,11 +4943,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>
-                  Yes. We provide specialist riser inspection support. Contact
-                  the team with your asset details and inspection objectives so
-                  the appropriate scope can be discussed.
-                </p>
+                <p>Yes. Share the asset details and inspection objectives so we can discuss a suitable riser inspection scope.</p>
               </div>
             </div>
           </div>
@@ -4958,12 +4958,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>
-                  Yes. Inspection requirements vary by asset and operating
-                  environment. The project scope can be discussed with the team
-                  so the inspection approach, access requirements and expected
-                  deliverables are clearly defined before work begins.
-                </p>
+                <p>Yes. We agree the inspection approach, access requirements and deliverables with the client before work begins.</p>
               </div>
             </div>
           </div>
@@ -4975,11 +4970,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>
-                  Use the contact or inspection request button below and provide
-                  your project requirements, asset type and preferred contact
-                  details. The team can then discuss the next steps with you.
-                </p>
+                <p>Use the contact form and include the asset, location, inspection objective and preferred contact details.</p>
               </div>
             </div>
           </div>
@@ -5006,10 +4997,10 @@
             requirements of your next project.
           </p>
           <div class="final-cta-actions">
-            <a href="mailto:example@biztop.com" class="final-cta-btn primary"
+            <a href="mailto:info@enhancedmarineltd.com" class="final-cta-btn primary"
               >Request an Inspection <span>→</span></a
             >
-            <a href="tel:+8804590053" class="final-cta-btn secondary"
+            <a href="tel:+2348132808812" class="final-cta-btn secondary"
               >Contact Our Team <span>→</span></a
             >
           </div>
@@ -5027,12 +5018,13 @@
           <div class="footer-brand">
             <img
               src="img/ChatGPT Image Aug 25, 2026, 10_04_34 AM.png"
-              alt="Enhanced Marine Limited logo"
+              alt="Enhanced Marine Limited Logo"
             />
             <h3>Enhanced Marine Limited</h3>
             <p>
               Specialist marine and subsea inspection services focused on ROV
-              operations, mooring line inspections and riser inspections.
+              operations, mooring and riser inspections, and chain dimensional
+              measurement.
             </p>
           </div>
 
@@ -5052,10 +5044,11 @@
           <div>
             <div class="footer-heading">Services</div>
             <ul class="footer-links">
-              <li><a href="#services">Marine Inspections</a></li>
-              <li><a href="#services">ROV Operations</a></li>
-              <li><a href="#services">Mooring Line Inspection</a></li>
-              <li><a href="#services">Riser Inspection</a></li>
+              <li><a href="services.html#marine-inspections">Marine Inspections</a></li>
+              <li><a href="services.html#rov-operations">ROV Operations</a></li>
+              <li><a href="services.html#mooring-line-inspection">Mooring Line Inspection</a></li>
+              <li><a href="services.html#riser-inspection">Riser Inspection</a></li>
+              <li><a href="services.html#chain-dimensional-measurement">Chain Dimensional Measurement</a></li>
               <li><a href="technologies.html">Technology</a></li>
             </ul>
           </div>
@@ -5063,8 +5056,9 @@
           <div>
             <div class="footer-heading">Contact</div>
             <div class="footer-contact">
-              <a href="mailto:example@biztop.com">example@biztop.com</a>
-              <a href="tel:+8804590053">+880 (4590) 053</a>
+              <a href="mailto:info@enhancedmarineltd.com">info@enhancedmarineltd.com</a>
+              <a href="tel:+2348132808812">+234 813 280 8812</a>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=NO+3+Senator+Street+Agbada1+off+Aluu+road+Port+Harcourt" target="_blank" rel="noopener noreferrer">No. 3 Senator Street, Agbada 1, off Aluu Road, Port Harcourt</a>
               <span
                 >For project enquiries and inspection requirements, contact our
                 team.</span
@@ -5079,12 +5073,8 @@
             reserved.</span
           >
           <div class="footer-social">
-            <a href="#" aria-label="Facebook"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" aria-label="LinkedIn"
-              ><i class="fab fa-linkedin-in"></i
+            <a href="mailto:info@enhancedmarineltd.com" aria-label="Email Enhanced Marine Limited"
+              ><i class="fas fa-envelope"></i
             ></a>
           </div>
           <span>Marine • ROV • Subsea Inspection</span>
